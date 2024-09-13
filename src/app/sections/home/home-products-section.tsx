@@ -24,7 +24,7 @@ export default function HomeProductsSection() {
                     <CarouselContent >
                         {
                             Array.from({length: 6}).map((_, index) => (
-                                <CarouselItem className={"basis-1/3"}>
+                                <CarouselItem className={"md:basis-1/3"}>
                                     <ItemCard scientificName={"Scientific Name"}
                                               label={"Item Major Title"}
                                               description={"Kamagra 100mg Oral Jelly is used to treat erectile " +

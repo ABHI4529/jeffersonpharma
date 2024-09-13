@@ -22,7 +22,7 @@ export default function HomeHeroCarousel(){
         >
             <CarouselContent>
                 {carousels.map((url, index) => (
-                    <CarouselItem key={index} className="w-full h-full">
+                    <CarouselItem key={index} className="w-full h-screen">
                         <img
                             src={url.src}
                             alt={`Carousel image ${index + 1}`}

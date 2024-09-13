@@ -26,7 +26,7 @@ export default function HomeNewsSection() {
                 <CarouselContent>
                     {
                         Array.from({length: 6}).map((_, index) => (
-                            <CarouselItem className={"basis-1/2"}>
+                            <CarouselItem className={"md:basis-1/2"}>
                                 <div className={"relative rounded-[30px] h-[300px] flex flex-col"}>
                                     <img
                                         src={"https://cdn.britannica.com/25/93825-050-D1300547/collection-newspapers.jpg"}
