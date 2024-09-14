@@ -87,7 +87,7 @@ export default function NavBar() {
                             <IoMenu/>
                         </Button>
                     </SheetTrigger>
-                    <SheetContent className={"z-[999] bg-white/50 backdrop-blur-2xl"}>
+                    <SheetContent className={"z-[999] bg-white backdrop-blur-2xl"}>
                         {
                             menu.map((item) => (
                                 <Link href={item.route} key={item.route}

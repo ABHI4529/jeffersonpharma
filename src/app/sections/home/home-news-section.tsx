@@ -7,6 +7,7 @@ import {RiArrowRightUpFill, RiArrowRightUpLine} from "react-icons/ri";
 import {PiArrowURightUp} from "react-icons/pi";
 import {ArrowUpRight} from "lucide-react";
 import {IoArrowBack, IoArrowForward} from "react-icons/io5";
+import {BsArrowUpRight} from "react-icons/bs";
 
 
 export default function HomeNewsSection() {
@@ -14,8 +15,8 @@ export default function HomeNewsSection() {
 
     return (
         <div className={"px-[4%] md:px-[8%] py-20 flex flex-col"}>
-            <h1 className={"text-2xl font-bold"}>Our Achievements</h1>
-            <p className={"text-muted-foreground"}>We have gained a lots of achievements.</p>
+            <h1 className={"text-lg md:text-2xl font-bold"}>Our Achievements</h1>
+            <p className={"text-xs md:text-sm text-muted-foreground"}>We have gained a lots of achievements.</p>
 
             <Carousel opts={{
                 align: "start",
@@ -27,7 +28,7 @@ export default function HomeNewsSection() {
                     {
                         Array.from({length: 6}).map((_, index) => (
                             <CarouselItem className={"md:basis-1/2"}>
-                                <div className={"relative rounded-[30px] h-[300px] flex flex-col"}>
+                                <div className={"relative rounded-[30px] h-[250px] md:h-[300px] flex flex-col"}>
                                     <img
                                         src={"https://cdn.britannica.com/25/93825-050-D1300547/collection-newspapers.jpg"}
                                         className={"absolute w-full h-full object-cover rounded-[30px]"}
@@ -35,10 +36,10 @@ export default function HomeNewsSection() {
                                     <div
                                         className={"absolute justify-between border border-[#D2D2D2] rounded-[30px] flex p-6 flex-col bg-gradient-to-r from-white to-white/60 h-full w-full"}>
                                         <div className={"flex flex-col gap-2"}>
-                                            <h1 className={"text-xl font-bold"}>
+                                            <h1 className={"text-lg md:text-xl font-bold"}>
                                                 Achievement 1
                                             </h1>
-                                            <p>
+                                            <p className={"text-xs md:text-sm"}>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique
                                                 tristique pretium. Aliquam nec lectus at risus efficitur gravida id eu
                                                 tellus. Quisque efficitur sagittis metus nec sollicitudin. Aenean
@@ -47,9 +48,9 @@ export default function HomeNewsSection() {
                                                 quis consectetur tortor.
                                             </p>
                                         </div>
-                                        <Button size={'sm'} className={"gap-2 w-32 self-end"}>
+                                        <Button size={'sm'} className={"gap-2 w-32 h-9 md:h-8 self-end"}>
                                             Read More
-                                            <ArrowUpRight/>
+                                            <BsArrowUpRight/>
                                         </Button>
                                     </div>
                                 </div>

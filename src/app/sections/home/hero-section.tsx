@@ -13,7 +13,7 @@ export default function HeroSection() {
     return (
         <div className="relative items-center justify-center w-full h-screen overflow-hidden">
            <HomeHeroCarousel/>
-            <div className={"absolute px-[4%] md:px-[8%] flex w-full md:w-[55%] h-full justify-center flex-col gap-1"}>
+            <div className={"absolute md:bg-gradient-to-t md:from-transparent bg-gradient-to-t from-white to-white/30 md:bg-transparent px-[4%] md:px-[8%] flex w-full md:w-[55%] h-full justify-center flex-col gap-1"}>
                 <h1 className={`text-xl md:text-3xl ${bebasNeue.className}`}>JEFFERSON IMPLEX PVT. LTD.</h1>
                 <h1 className={"text-xl md:text-4xl font-bold"}>
                     Empowering Global Healthcare with World-Class Pharmaceuticals
@@ -24,7 +24,7 @@ export default function HeroSection() {
                     range of pharmaceutical products that meet the most stringent global standards.
                 </h2>
                 <div className={"flex gap-3 mt-8 w-[90%]"}>
-                    <Input placeholder={"Search Products"} className={"bg-[#e7e7e7] border-none h-11 rounded-sm"}/>
+                    <Input placeholder={"Search Products"} className={"bg-[#e7e7e7] border border-primary md:border-none h-11 rounded-sm"}/>
                     <Button className={"h-11 w-[150px]"}>
                         Search
                     </Button>

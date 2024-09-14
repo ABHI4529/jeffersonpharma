@@ -16,8 +16,8 @@ export default function CardItem({label, scientificName, description, img, route
             <img src={img} className={"rounded-[22px] w-full h-[200px] object-cover]"} alt={"product"}/>
             <div className={"py-6"}>
                 <p className={"text-xs text-muted-foreground"}>{scientificName}</p>
-                <h1 className={"text-xl font-bold"}>{label}</h1>
-                <p className={"text-sm text-muted-foreground mt-2"}>
+                <h1 className={"text-md md:text-xl font-bold"}>{label}</h1>
+                <p className={"text-xs text-muted-foreground mt-2"}>
                     {description}
                 </p>
             </div>
