@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function HomeInfoSection() {
     return (
-        <div className={"flex flex-col px-[4%] py-[8%] min-h-screen gap-20"}>
+        <div className={"flex flex-col px-[4%] md:px-[8%] py-[8%] min-h-screen gap-20"}>
             <div className={"flex flex-col-reverse md:flex-row justify-between items-center gap-8"}>
                 <div className={"flex flex-col w-full md:w-1/2"}>
                     <h1 className={"text-xl md:text-2xl font-bold"}>Services That We Deliver</h1>

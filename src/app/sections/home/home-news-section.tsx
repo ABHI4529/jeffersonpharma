@@ -13,7 +13,7 @@ export default function HomeNewsSection() {
     const [api, setApi] = useState<any>();
 
     return (
-        <div className={"px-[4%] py-20 flex flex-col"}>
+        <div className={"px-[4%] md:px-[8%] py-20 flex flex-col"}>
             <h1 className={"text-2xl font-bold"}>Our Achievements</h1>
             <p className={"text-muted-foreground"}>We have gained a lots of achievements.</p>
 

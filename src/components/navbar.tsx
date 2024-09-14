@@ -8,10 +8,24 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {IoMenu} from "react-icons/io5";
+import {useEffect, useState} from "react";
 
 
 export default function NavBar() {
     const path = usePathname();
+    const [isScrolled, setIsScrolled] = useState<boolean>(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY >= 10);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const menu = [
         {
@@ -39,7 +53,11 @@ export default function NavBar() {
 
     return (
         <nav
-            className={"fixed z-[99] left-0 top-0 right-0 items-center flex justify-between px-[4%] py-6 bg-white/20 backdrop-blur-2xl"}>
+            className={cn(
+                "fixed z-[99] left-0 top-0 right-0 duration-500 transition-all items-center flex justify-between px-[4%] md:px-[8%] py-6",
+                isScrolled ? "backdrop-blur-2xl bg-white/50" : ""
+            )}
+        >
             <div className={"flex w-[200px]"}>
                 <Image src={logo} alt={"logo"} height={30}/>
             </div>

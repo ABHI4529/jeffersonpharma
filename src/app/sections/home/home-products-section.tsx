@@ -10,7 +10,7 @@ export default function HomeProductsSection() {
     const [api, setApi] = useState<any>();
 
     return (
-        <div className={"flex flex-col p-[4%] bg-[#f2f2f2]"}>
+        <div className={"flex flex-col px-[4%] md:px-[8%] pt-20 pb-10 bg-[#f2f2f2]"}>
             <h1 className={"text-2xl font-bold"}>Explore Our Products</h1>
             <p className={"text-muted-foreground"}>Go through a wide range of Jefferson Implex products and contact us
                 for custom order.</p>

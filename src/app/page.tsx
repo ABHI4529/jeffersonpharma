@@ -2,6 +2,7 @@ import HeroSection from "@/app/sections/home/hero-section";
 import HomeInfoSection from "@/app/sections/home/home-info-section";
 import HomeProductsSection from "@/app/sections/home/home-products-section";
 import HomeNewsSection from "@/app/sections/home/home-news-section";
+import ContactSection from "@/app/sections/common/contact-section";
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
             <HomeInfoSection/>
             <HomeProductsSection/>
             <HomeNewsSection/>
+            <ContactSection/>
         </div>
     );
 }
