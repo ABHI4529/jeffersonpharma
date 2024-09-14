@@ -17,7 +17,7 @@ export default function CardItem({label, scientificName, description, img, route
             <div className={"py-6"}>
                 <p className={"text-xs text-muted-foreground"}>{scientificName}</p>
                 <h1 className={"text-md md:text-xl font-bold"}>{label}</h1>
-                <p className={"text-xs text-muted-foreground mt-2"}>
+                <p className={"text-xs md:text-[14px] text-muted-foreground mt-2"}>
                     {description}
                 </p>
             </div>

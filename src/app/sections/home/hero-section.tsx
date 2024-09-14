@@ -15,8 +15,8 @@ export default function HeroSection() {
            <HomeHeroCarousel/>
             <div className={"absolute md:bg-gradient-to-t md:from-transparent bg-gradient-to-t from-white to-white/30 md:bg-transparent px-[4%] md:px-[8%] flex w-full md:w-[55%] h-full justify-center flex-col gap-1"}>
                 <h1 className={`text-xl md:text-3xl ${bebasNeue.className}`}>JEFFERSON IMPLEX PVT. LTD.</h1>
-                <h1 className={"text-xl md:text-4xl font-bold"}>
-                    Empowering Global Healthcare with World-Class Pharmaceuticals
+                <h1 className={"text-xl md:text-4xl font-bold md:whitespace-nowrap"}>
+                    Empowering Global Healthcare with<br className={"hidden md:block"}/> World-Class Pharmaceuticals
                 </h1>
                 <h2 className={"text-sm md:text-md text-muted-foreground w-[90%]"}>
                     we are revolutionizing healthcare by providing access to high-quality, affordable pharmaceutical

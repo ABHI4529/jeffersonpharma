@@ -9,7 +9,7 @@ export default function HomeInfoSection() {
             <div className={"flex flex-col-reverse md:flex-row justify-between items-center gap-8"}>
                 <div className={"flex flex-col w-full md:w-1/2"}>
                     <h1 className={"text-lg md:text-2xl font-bold"}>Services That We Deliver</h1>
-                    <p className={"text-xs md:text-md text-muted-foreground"}>With over two decades of experience as a leading
+                    <p className={"text-xs md:text-[16px] md:leading-5 text-muted-foreground"}>With over two decades of experience as a leading
                         pharmaceuticals distributor, we take pride in
                         taking care of the fine details so you don't have to. Our goal is to source, distribute and
                         deliver pharmaceutical products to everyone who needs them most, and all without any of the
@@ -17,16 +17,16 @@ export default function HomeInfoSection() {
                         fast, flexible and fair provider who always has your best interests at heart.</p>
                 </div>
                 <div className={"flex justify-center md:justify-end w-full md:w-1/2 h-auto"}>
-                    <img src={home_deliver.src} alt={"home deliver"} className={"w-auto h-[150px] md:w-[80%] object-contain"}/>
+                    <img src={home_deliver.src} alt={"home deliver"} className={"w-auto h-[150px] md:h-full md:w-[80%] object-contain"}/>
                 </div>
             </div>
             <div className={"flex flex-col md:flex-row justify-between items-center gap-8"}>
                 <div className={"flex justify-center md:justify-start w-full md:w-1/2 h-auto"}>
-                    <img src={home_coin.src} alt={"home deliver"} className={"w-auto h-[150px] md:w-[50%] object-contain"}/>
+                    <img src={home_coin.src} alt={"home deliver"} className={"w-auto h-[150px] md:h-full md:w-[50%] object-contain"}/>
                 </div>
                 <div className={"flex flex-col w-full md:w-1/2"}>
                     <h1 className={"text-lg md:text-2xl font-bold"}>Validated Cold Chain Shipment</h1>
-                    <p className={"text-xs md:text-md text-muted-foreground"}>With over two decades of experience as a leading
+                    <p className={"text-xs md:text-[16px] md:leading-5 text-muted-foreground"}>With over two decades of experience as a leading
                         With shifting of pharma industry from synthetic molecules to
                         biologic, proteins etc. temperature maintenance has become
                         as important as the drug itself! According to the WHO - Good
@@ -38,7 +38,7 @@ export default function HomeInfoSection() {
             <div className={"flex flex-col-reverse md:flex-row justify-between items-center gap-8"}>
                 <div className={"flex flex-col w-full md:w-1/2"}>
                     <h1 className={"text-lg md:text-2xl font-bold"}>Pharmaceutical Contract</h1>
-                    <p className={"text-xs md:text-md text-muted-foreground"}>GNH Provides Contract Manufacturing services for: Generic
+                    <p className={"text-xs md:text-[16px] md:leading-5 text-muted-foreground"}>GNH Provides Contract Manufacturing services for: Generic
                         Medicines with following quality levels: US FDA / UK MHRA
                         approved facilities WHO GMP approved facilities WHO Pre
                         qualified approved facilities Vaccine manufacturing Neutral
@@ -47,7 +47,7 @@ export default function HomeInfoSection() {
                     </p>
                 </div>
                 <div className={"flex justify-center md:justify-end w-1-2 h-auto"}>
-                    <img src={home_contract.src} alt={"home deliver"} className={"w-auto h-[150px] md:w-[80%] object-contain"}/>
+                    <img src={home_contract.src} alt={"home deliver"} className={"w-auto h-[150px] md:h-full md:w-[80%] object-contain"}/>
                 </div>
             </div>
         </div>
