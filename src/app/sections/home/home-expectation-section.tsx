@@ -1,11 +1,8 @@
-import {Globe, globe_config, sampleArcs, World} from "@/components/ui/globe";
-import {IoAirplane, IoDocuments, IoGlobe, IoPlanet} from "react-icons/io5";
-import {TruckIcon} from "lucide-react";
-import {BsAirplane, BsTruck} from "react-icons/bs";
-import {FaTruck} from "react-icons/fa";
-import {GiAirplane} from "react-icons/gi";
-import {CgAirplane} from "react-icons/cg";
+"use client";
 
+import {globe_config, sampleArcs, World} from "@/components/ui/globe";
+import {IoAirplane, IoDocuments, IoGlobe, IoPlanet} from "react-icons/io5";
+import {FaTruck} from "react-icons/fa";
 
 export default function HomeExpectationSection() {
     return (

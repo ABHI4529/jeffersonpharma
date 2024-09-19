@@ -16,7 +16,6 @@ export default function Home() {
             <HomeProductsSection/>
             <HomeReviewsSection/>
             <HomeBlogsSection/>
-            <div id={"contact"}/>
             <ContactSection/>
         </div>
     );
