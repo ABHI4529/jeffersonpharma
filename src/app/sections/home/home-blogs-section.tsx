@@ -14,7 +14,7 @@ export default function HomeBlogsSection() {
     const [api, setApi] = useState<any>();
 
     return (
-        <div className={"px-[4%] md:px-[8%] py-20 flex flex-col"}>
+        <div className={"px-[4%] md:px-[8%] pt-10 pb-20 flex flex-col"}>
             <h1 className={"text-lg md:text-2xl font-bold"}>Our Blogs</h1>
             <p className={"text-xs md:text-sm text-muted-foreground"}>
                 Keep checking out our blogs for new updates.
@@ -64,7 +64,7 @@ export default function HomeBlogsSection() {
             <div className={"flex gap-3 items-center justify-center mt-8"}>
                 <Button variant={"link"} onClick={() => {
                     if (api) {
-                        api.current.scrollPrev();
+                        api.scrollPrev();
                     }
                 }}>
                     <IoArrowBack/>

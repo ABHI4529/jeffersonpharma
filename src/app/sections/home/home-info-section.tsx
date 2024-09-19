@@ -21,22 +21,11 @@ export default function HomeInfoSection() {
                          className={"w-auto h-[150px] md:h-full md:w-[80%] object-contain"}/>
                 </div>
             </div>
-            <div className={"flex flex-col md:flex-row justify-between items-center gap-8"}>
-                <div className={"flex justify-center md:justify-start w-full md:w-1/2 h-auto"}>
-                    <img src={home_coin.src} alt={"home deliver"}
-                         className={"w-auto h-[150px] md:h-full md:w-[50%] object-contain"}/>
-                </div>
-                <div className={"flex flex-col gap-2 w-full md:w-1/2"}>
-                    <h1 className={"text-lg md:text-2xl font-bold"}>A company you can expect from</h1>
-                    <p className={"text-xs md:text-[16px] md:leading-5 text-muted-foreground"}>
-                        With a global reach across 150 countries, our extensive portfolio boasts over 1,80,000
-                        pharmaceutical products. Backed by five government regulatory registrations and partnerships
-                        with more than 300 trusted manufacturers, we deliver unparalleled service. Our expertise ensures
-                        timely solutions, having successfully completed over 2,000 express deliveries worldwide.
-                    </p>
-                </div>
-            </div>
             <div className={"flex flex-col-reverse md:flex-row justify-between items-center gap-8"}>
+                <div className={"flex justify-center md:justify-end w-1-2 h-auto"}>
+                    <img src={home_contract.src} alt={"home deliver"}
+                         className={"w-auto h-[150px] md:h-full md:w-[80%] object-contain"}/>
+                </div>
                 <div className={"flex flex-col gap-2 w-full md:w-1/2"}>
                     <h1 className={"text-lg md:text-2xl font-bold"}>SEVA</h1>
                     <p className={"text-xs md:text-[16px] md:leading-5 text-muted-foreground"}>
@@ -46,10 +35,6 @@ export default function HomeInfoSection() {
                         delivery of essential medicines and supplies. We remain committed to serving both the community
                         and the nation through our work.
                     </p>
-                </div>
-                <div className={"flex justify-center md:justify-end w-1-2 h-auto"}>
-                    <img src={home_contract.src} alt={"home deliver"}
-                         className={"w-auto h-[150px] md:h-full md:w-[80%] object-contain"}/>
                 </div>
             </div>
         </div>

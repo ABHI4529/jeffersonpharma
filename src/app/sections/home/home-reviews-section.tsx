@@ -59,7 +59,7 @@ export default function HomeReviewsSection() {
                     ))}
                 </CardStack>
             </div>
-            <div className="flex items-center z-[9] justify-center gap-3  mb-8">
+            <div className="flex items-center z-[9] justify-center gap-3  mb-16">
                 <Button variant="link" onClick={() => cardStackRef?.current.prevCard()}>
                     <IoArrowBack />
                 </Button>

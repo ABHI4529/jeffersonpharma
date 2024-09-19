@@ -69,7 +69,7 @@ export const CardStack = forwardRef(function CardStack(
                                 transition: { duration: 0.5 },
                             }}
                             transition={{
-                                duration: 0.3,
+                                duration: 0.4,
                                 ease: "easeInOut",
                             }}
                         >

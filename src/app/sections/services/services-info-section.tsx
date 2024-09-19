@@ -41,10 +41,10 @@ export default function ServicesInfoSection() {
             className="min-h-screen w-full dark:bg-black bg-white dark:bg-dots-white/[0.2] bg-dot-black/[0.5] relative flex">
             <div
                 className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-[#f5f5f5] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-            <div className={"grid grid-cols-3 w-full gap-8 px-[8%] py-20 z-[99]"}>
+            <div className={"flex flex-col md:grid md:grid-cols-3 w-full gap-8 px-[8%] py-20 z-[9]"}>
                 {
                     services.map((item, index) => (
-                        <Card className={"group transition-all duration-300 hover:scale-[1.02] relative bg-[#f5f5f5] border border-gray-300 shadow-none"}>
+                        <Card className={"group h-[300px] md:h-auto transition-all duration-300 hover:scale-[1.02] relative bg-[#f5f5f5] border border-gray-300 shadow-none"}>
                             <img src={item.icon} alt={"img"}
                                  className={"absolute rounded-md object-cover h-full w-full"}/>
                             <div className={"absolute transition-all group-hover:bg-white/70 group-hover:backdrop-blur bg-white/80 jo rounded-md object-cover h-full w-full"}/>

@@ -4,6 +4,7 @@ import HomeProductsSection from "@/app/sections/home/home-products-section";
 import ContactSection from "@/app/sections/common/contact-section";
 import HomeReviewsSection from "@/app/sections/home/home-reviews-section";
 import HomeBlogsSection from "@/app/sections/home/home-blogs-section";
+import HomeExpectationSection from "@/app/sections/home/home-expectation-section";
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         <div className={"flex flex-col"}>
             <HeroSection/>
             <HomeInfoSection/>
+            <HomeExpectationSection/>
             <HomeProductsSection/>
             <HomeReviewsSection/>
             <HomeBlogsSection/>
