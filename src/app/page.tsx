@@ -5,7 +5,8 @@ import ContactSection from "@/app/sections/common/contact-section";
 import HomeReviewsSection from "@/app/sections/home/home-reviews-section";
 import HomeBlogsSection from "@/app/sections/home/home-blogs-section";
 import dynamic from "next/dynamic";
-const HomeExpectationSection  = dynamic((import("@/app/sections/home/home-expectation-section")), {ssr: false});
+
+const HomeExpectationSection = dynamic(() => import ("@/app/sections/home/home-expectation-section"), {ssr: false});
 
 
 export default function Home() {
