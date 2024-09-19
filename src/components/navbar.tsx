@@ -3,7 +3,7 @@
 import logo from "@/assets/logo.svg";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import {cn} from "@/lib/utils";
 import Link from "next/link";
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
@@ -13,7 +13,9 @@ import {useEffect, useState} from "react";
 
 export default function NavBar() {
     const path = usePathname();
+    const [selected, setSelected] = useState<number>(0);
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -52,7 +54,7 @@ export default function NavBar() {
 
 
     return (
-        <nav
+        <div
             className={cn(
                 "fixed z-[99] left-0 top-0 right-0 duration-500 transition-all items-center flex justify-between px-[4%] md:px-[8%] py-6",
                 isScrolled ? "backdrop-blur-2xl bg-white/50" : ""
@@ -63,20 +65,25 @@ export default function NavBar() {
             </div>
             <div className={"hidden md:flex md:flex-row gap-6"}>
                 {
-                    menu.map((item) => (
+                    menu.map((item, index) => (
                         <Link href={item.route} key={item.route}
+                              onClick={()=>{
+                                  setSelected(index);
+                              }}
                               className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
                             <p className="text-sm font-medium">{item.label}</p>
                             <span className={cn(
                                 "w-0 h-0.5 transition-all bg-primary rounded-full group-hover:w-4",
-                                path.includes(item.route) ? "w-6" : ""
+                                selected === index ? "w-6" : ""
                             )}/>
                         </Link>
                     ))
                 }
             </div>
             <div className={"w-[200px] hidden md:flex justify-end"}>
-                <Button className={"w-[150px]"}>
+                <Button onClick={()=>{
+                    router.push("#contact");
+                }} className={"w-[150px]"}>
                     Contact us
                 </Button>
             </div>
@@ -89,8 +96,11 @@ export default function NavBar() {
                     </SheetTrigger>
                     <SheetContent className={"z-[999] bg-white backdrop-blur-2xl"}>
                         {
-                            menu.map((item) => (
+                            menu.map((item, index) => (
                                 <Link href={item.route} key={item.route}
+                                      onClick={() => {
+                                          setSelected(index);
+                                      }}
                                       className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
                                     <p className="text-sm font-medium">{item.label}</p>
                                     <span className={cn(
@@ -103,6 +113,6 @@ export default function NavBar() {
                     </SheetContent>
                 </Sheet>
             </div>
-        </nav>
+        </div>
     )
 }

@@ -22,7 +22,9 @@ export default function RootLayout({
         <body
             className={`${inter.className} antialiased`}
         >
-        <NavBar/>
+        <header>
+            <NavBar/>
+        </header>
         {children}
         </body>
         <PageFooter/>

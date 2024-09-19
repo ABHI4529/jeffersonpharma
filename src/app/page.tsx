@@ -1,8 +1,9 @@
 import HeroSection from "@/app/sections/home/hero-section";
 import HomeInfoSection from "@/app/sections/home/home-info-section";
 import HomeProductsSection from "@/app/sections/home/home-products-section";
-import HomeNewsSection from "@/app/sections/home/home-news-section";
 import ContactSection from "@/app/sections/common/contact-section";
+import HomeReviewsSection from "@/app/sections/home/home-reviews-section";
+import HomeBlogsSection from "@/app/sections/home/home-blogs-section";
 
 
 export default function Home() {
@@ -11,7 +12,9 @@ export default function Home() {
             <HeroSection/>
             <HomeInfoSection/>
             <HomeProductsSection/>
-            <HomeNewsSection/>
+            <HomeReviewsSection/>
+            <HomeBlogsSection/>
+            <div id={"contact"}/>
             <ContactSection/>
         </div>
     );

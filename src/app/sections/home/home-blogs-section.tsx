@@ -10,13 +10,15 @@ import {IoArrowBack, IoArrowForward} from "react-icons/io5";
 import {BsArrowUpRight} from "react-icons/bs";
 
 
-export default function HomeNewsSection() {
+export default function HomeBlogsSection() {
     const [api, setApi] = useState<any>();
 
     return (
         <div className={"px-[4%] md:px-[8%] py-20 flex flex-col"}>
-            <h1 className={"text-lg md:text-2xl font-bold"}>Our Achievements</h1>
-            <p className={"text-xs md:text-sm text-muted-foreground"}>We have gained a lots of achievements.</p>
+            <h1 className={"text-lg md:text-2xl font-bold"}>Our Blogs</h1>
+            <p className={"text-xs md:text-sm text-muted-foreground"}>
+                Keep checking out our blogs for new updates.
+            </p>
 
             <Carousel opts={{
                 align: "start",
@@ -37,7 +39,7 @@ export default function HomeNewsSection() {
                                         className={"absolute justify-between border border-[#D2D2D2] rounded-[30px] flex p-6 flex-col bg-gradient-to-r from-white to-white/60 h-full w-full"}>
                                         <div className={"flex flex-col gap-2"}>
                                             <h1 className={"text-lg md:text-xl font-bold"}>
-                                                Achievement 1
+                                                Blog 1
                                             </h1>
                                             <p className={"text-xs md:text-sm"}>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique
@@ -62,7 +64,7 @@ export default function HomeNewsSection() {
             <div className={"flex gap-3 items-center justify-center mt-8"}>
                 <Button variant={"link"} onClick={() => {
                     if (api) {
-                        api.scrollPrev();
+                        api.current.scrollPrev();
                     }
                 }}>
                     <IoArrowBack/>
