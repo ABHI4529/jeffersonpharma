@@ -18,15 +18,17 @@ export default function NavBar() {
     const router = useRouter();
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY >= 10);
-        };
+        if(typeof window !== 'undefined'){
+            const handleScroll = () => {
+                setIsScrolled(window.scrollY >= 10);
+            };
 
-        window.addEventListener('scroll', handleScroll);
+            window.addEventListener('scroll', handleScroll);
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
     }, []);
 
     const menu = [

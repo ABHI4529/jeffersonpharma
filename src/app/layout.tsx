@@ -1,9 +1,10 @@
 import type {Metadata} from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import NavBar from "@/components/navbar";
+const NavBar = dynamic(()=> import ("@/components/navbar"), {ssr: false});
 import PageFooter from "@/components/page-footer";
 import {Inter} from "next/font/google";
+import dynamic from "next/dynamic";
 
 const inter = Inter({subsets: ["latin"]});
 
