@@ -1,8 +1,31 @@
 "use client";
 
-import {globe_config, sampleArcs, World} from "@/components/ui/globe";
+import {sampleArcs, World} from "@/components/ui/globe";
 import {IoAirplane, IoDocuments, IoGlobe, IoPlanet} from "react-icons/io5";
 import {FaTruck} from "react-icons/fa";
+
+const  globeConfig = {
+    pointSize: 4,
+    globeColor: "#062056",
+    showAtmosphere: true,
+    atmosphereColor: "#FFFFFF",
+    atmosphereAltitude: 0.1,
+    emissive: "#062056",
+    emissiveIntensity: 0.1,
+    shininess: 0.9,
+    polygonColor: "rgba(255,255,255,0.7)",
+    ambientLight: "#38bdf8",
+    directionalLeftLight: "#ffffff",
+    directionalTopLight: "#ffffff",
+    pointLight: "#ffffff",
+    arcTime: 1000,
+    arcLength: 0.9,
+    rings: 1,
+    maxRings: 3,
+    autoRotate: false,
+    initialPosition: { lat: 21.1458, lng: 79.0882 },
+    autoRotateSpeed: 0
+};
 
 export default function HomeExpectationSection() {
     return (
@@ -17,7 +40,7 @@ export default function HomeExpectationSection() {
             <MobileInfo/>
             <div className={"relative flex w-full h-full flex-col"}>
                 <div className={"absolute w-full bottom-[-350px] md:bottom-[-480px] h-[600px] md:h-[800px]"}>
-                    <World data={sampleArcs} globeConfig={globe_config}/>
+                    <World data={sampleArcs} globeConfig={globeConfig}/>
                 </div>
             </div>
         </div>
