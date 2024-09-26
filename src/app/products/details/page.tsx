@@ -7,6 +7,9 @@ import {DatabaseService} from "@/core/database-service";
 import {AiOutlineLoading} from "react-icons/ai";
 import {Lens} from "@/components/ui/lens";
 import Image from "next/image";
+import {Table, TableBody, TableCell, TableRow} from "@/components/ui/table";
+import {cn} from "@/lib/utils";
+import { motion } from "framer-motion";
 
 export default function ProductDetails() {
     const [product, setProduct] = useState<ProductModel>();
@@ -31,7 +34,7 @@ export default function ProductDetails() {
     }, [])
 
     return (
-        <div className={"relative px-[4%] pt-28 md:px-[8%] flex flex-col min-h-screen bg-grid-black/10"}>
+        <div className={"relative px-[4%] py-28 md:px-[8%] flex flex-col min-h-screen bg-grid-black/10"}>
             <div
                 className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-[#f2f2f2] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
             {
@@ -40,8 +43,19 @@ export default function ProductDetails() {
                         className={"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex border border-gray-300 rounded-md shadow-2xl bg-white p-6"}>
                         <AiOutlineLoading className={"animate-spin"}/>
                     </div>
-                ) : <div className={"flex gap-8 z-[9] w-full"}>
-                    <div className={"flex flex-col w-[40%] "}>
+                ) : <motion.div
+                    initial={{
+                        y: 50,
+                        scale: 0.7,
+                        opacity: 0
+                    }}
+                    animate={{
+                        y: 0,
+                        scale: 1,
+                        opacity: 1
+                    }}
+                    className={"flex bg-white p-7 rounded-2xl shadow-2xl self-center flex-col gap-6 z-[9] w-full md:w-[35vw]"}>
+                    <div className={"flex flex-col"}>
                         <Lens hovering={hovering} setHovering={setHovering}>
                             <img
                                 src={product?.imgUrl}
@@ -50,18 +64,80 @@ export default function ProductDetails() {
                             />
                         </Lens>
                     </div>
-                    <div className={"flex flex-col mt-6 w-[60%]"}>
-                        <p className={"text-[#2472cc]"}>{product.drug}</p>
-                        <h1 className={"text-4xl font-bold"}>{product.brand}</h1>
-                        <p className={"text-sm text-muted-foreground mt-2"}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                        </p>
+                    <div className={cn("flex flex-col w-full")}>
+                        <p className={"text-xs md:text-sm text-[#2472cc]"}>{product.drug}</p>
+                        <h1 className={"text-xl md:text-4xl font-bold"}>{product.brand}</h1>
+                        <div className={"flex rounded-xl p-3 flex-col mt-5 shadow-inner bg-[#fcfcfc] border border-gray-300"}>
+                            <Table>
+                                <TableBody>
+                                    <TableRow className={"hover:bg-transparent"}>
+                                        <TableCell>
+                                            Brand Name / Trade Name
+                                        </TableCell>
+                                        <TableCell className={"text-end"}>
+                                            {product.brand}
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow className={"hover:bg-transparent"}>
+                                        <TableCell>
+                                            Active Ingredient
+                                        </TableCell>
+                                        <TableCell className={"text-end"}>
+                                            {product.drug}
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow className={"hover:bg-transparent"}>
+                                        <TableCell>
+                                            Power / Strength
+                                        </TableCell>
+                                        <TableCell className={"text-end"}>
+                                            {product.strength}
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow className={"hover:bg-transparent"}>
+                                        <TableCell>
+                                            Type / Form
+                                        </TableCell>
+                                        <TableCell className={"text-end"}>
+                                            {product.type}
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow className={"hover:bg-transparent"}>
+                                        <TableCell>
+                                            Status
+                                        </TableCell>
+                                        <TableCell className={"text-end"}>
+                                            Status
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow className={"hover:bg-transparent"}>
+                                        <TableCell>
+                                            Manufacturer
+                                        </TableCell>
+                                        <TableCell className={"text-end"}>
+                                            {product.manufacturer}
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow className={"hover:bg-transparent"}>
+                                        <TableCell>
+                                            Pack Size
+                                        </TableCell>
+                                        <TableCell className={"text-end"}>
+                                            {product.packSize}
+                                        </TableCell>
+                                    </TableRow><TableRow className={"hover:bg-transparent"}>
+                                    <TableCell>
+                                        Storage & Handeling
+                                    </TableCell>
+                                    <TableCell className={"text-end"}>
+                                        storage
+                                    </TableCell>
+                                </TableRow>
+                                </TableBody>
+                            </Table>
+                        </div>
                     </div>
-                </div>
+                </motion.div>
             }
         </div>
     )

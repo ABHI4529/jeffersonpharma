@@ -1,10 +1,10 @@
 import type {Metadata} from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 const NavBar = dynamic(()=> import ("@/components/navbar"), {ssr: false});
 import PageFooter from "@/components/page-footer";
 import {Inter} from "next/font/google";
 import dynamic from "next/dynamic";
+import React from "react";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -26,9 +26,11 @@ export default function RootLayout({
         <header>
             <NavBar/>
         </header>
-        {children}
+        <div className={"flex flex-col"}>
+            {children}
+            <PageFooter/>
+        </div>
         </body>
-        <PageFooter/>
         </html>
     );
 }

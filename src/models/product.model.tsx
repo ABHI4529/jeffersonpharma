@@ -6,6 +6,7 @@ export interface ProductModel {
     imgUrl : string;
     id : string;
     strength : string;
+    status : string;
     avlStrength : string;
     packSize : string;
     avlPackSize : string;

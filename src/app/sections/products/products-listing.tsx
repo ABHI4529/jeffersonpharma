@@ -20,9 +20,9 @@ export default function ProductsListing() {
     const [page, setPage] = useState(1);
 
     const searchBy = [
-        { label: "Product Name", value: "brandQuery" },
+        { label: "Brand Name", value: "brandQuery" },
         { label: "Product Content", value: "contentsQuery" },
-        { label: "Brand", value: "drugQuery" }
+        { label: "Drug", value: "drugQuery" }
     ];
 
     // Fetch products on initial load and when page changes (for pagination)
@@ -72,7 +72,7 @@ export default function ProductsListing() {
     };
 
     return (
-        <div className="relative min-h-screen px-[8%] py-24 flex flex-col gap-3">
+        <div className="relative min-h-screen px-[4%] md:px-[8%] py-24 flex flex-col gap-3">
             <div className="flex gap-3 border bg-[#e7e7e7]/50 border-gray-300 p-2 rounded-md">
                 <Select onValueChange={(value) => setSearchField(value)}>
                     <SelectTrigger className="bg-white border-none h-11 rounded-[8px] w-[200px]">
@@ -98,7 +98,7 @@ export default function ProductsListing() {
             </div>
 
             {/* Product grid */}
-            <div className="grid grid-cols-3 gap-8 mt-8 h-full overflow-y-scroll">
+            <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-8 h-full overflow-y-scroll">
                 {products.map((product, index) => (
                     <CardItem
                         key={index}
