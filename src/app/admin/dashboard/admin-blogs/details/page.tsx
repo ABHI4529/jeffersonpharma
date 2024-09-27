@@ -12,7 +12,6 @@ import "@blocknote/mantine/style.css";
 import "@blocknote/core/fonts/inter.css";
 import {BlockNoteView} from "@blocknote/mantine";
 import {toast} from "sonner";
-import {Toaster} from "@/components/ui/sonner";
 import {StorageService} from "@/core/storage-service";
 import {DatabaseService} from "@/core/database-service";
 import {Label} from "@/components/ui/label";
@@ -32,12 +31,6 @@ export default function AdminBlogsDetails() {
     const [deletedImage, setDeletedImage] = useState<string>();
     const [imageFile, setImageFile] = useState<File | null>(null);
     const router = useRouter();
-    const editor = useMemo(() => {
-        if (longDescription === "loading") {
-            return undefined;
-        }
-        return BlockNoteEditor.create({initialContent: longDescription});
-    }, [longDescription]);
     const params = useSearchParams();
 
     function saveBlog() {
@@ -77,6 +70,7 @@ export default function AdminBlogsDetails() {
         );
     }
 
+
     function saveOrUpdateBlog(imageUrl: string | undefined) {
         const data = {
             coverImage: imageUrl,
@@ -112,6 +106,7 @@ export default function AdminBlogsDetails() {
         }
     }
 
+
     useEffect(() => {
         if (params.has("id")) {
             const id = params.get("id");
@@ -123,13 +118,23 @@ export default function AdminBlogsDetails() {
                         setBlogDescription(blog.get("description"));
                         setImageUrl(blog.get("coverImage"));
                         setLongDescription(blog.get("content"));
-                        setDeletedImage(blog.get("coverImage")); // Store the existing image URL
+                        setDeletedImage(blog.get("coverImage"));
+
                     }
                 });
             }
         }
     }, [params]);
 
+    const editor = useMemo(() => {
+        if (longDescription === "loading") {
+            return undefined;
+        }
+        return BlockNoteEditor.create({initialContent: longDescription});
+    }, [longDescription]);
+
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div className={"flex relative bg-grid-black/10 h-screen flex-col"}>
             <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-[#f2f2f2] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"/>
@@ -214,6 +219,7 @@ export default function AdminBlogsDetails() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className={"overflow-y-scroll h-[300px]"}>
+
                         <BlockNoteView theme={"light"} editor={editor}/>
                     </CardContent>
                 </Card>
