@@ -1,3 +1,5 @@
+
+
 import {Inter} from "next/font/google";
 import type {Metadata} from "next";
 import {Toaster} from "@/components/ui/sonner";
@@ -16,16 +18,13 @@ export default function DashboardRootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-        <body className={inter.className + " overflow-hidden"}>
+        <section className={inter.className + " overflow-hidden"}>
         <div className={'flex flex-col w-full h-screen'}>
-            <Sidebar/>
             <div className={"flex flex-col w-full h-full"}>
                 {children}
             </div>
         </div>
         <Toaster richColors/>
-        </body>
-        </html>
+        </section>
     );
 }

@@ -32,7 +32,7 @@ export default function LoginSection() {
         return new Promise<void>((resolve) => {
             setTimeout(() => {
                 if(data.email === "admin@gmail.com" && data.password === "123456"){
-                    router.push("/admin/dashboard");
+                    router.push("/admin/dashboard/admin-products");
                 }else{
                     toast.error("Invalid credentials");
                 }

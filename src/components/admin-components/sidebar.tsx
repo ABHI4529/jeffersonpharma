@@ -12,18 +12,18 @@ export default function SideBar(){
     const menu = [
         {
             label : "Products",
-            route : "/admin/dashboard/products"
+            route : "/admin/dashboard/admin-products"
         },
         {
             label : "Blogs",
-            route : "/admin/dashboard/blogs"
+            route : "/admin/dashboard/admin-blogs"
         }
     ]
 
 
     return(
-        <div className={"flex items-center gap-20 w-full p-6"}>
-            <div className={"flex gap-3 items-center p-3 bg-white rounded-xl"}>
+        <div className={"flex items-center gap-20 w-full py-6"}>
+            <div className={"flex gap-3 items-center py-3 bg-white rounded-xl"}>
                 <img src={logo.src} alt={"img"} className={"h-[30px]"}/>
             </div>
             <div className={"flex gap-3"}>

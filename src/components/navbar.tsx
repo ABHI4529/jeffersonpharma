@@ -10,8 +10,12 @@ import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 import {IoMenu} from "react-icons/io5";
 import {useEffect, useState} from "react";
 
+interface props {
+    index : number;
+}
 
-export default function NavBar() {
+
+export default function NavBar({index} : props) {
     const path = usePathname();
     const [selected, setSelected] = useState<number>(0);
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -67,16 +71,13 @@ export default function NavBar() {
             </div>
             <div className={"hidden md:flex md:flex-row gap-6"}>
                 {
-                    menu.map((item, index) => (
+                    menu.map((item, i) => (
                         <Link href={item.route} key={item.route}
-                              onClick={()=>{
-                                  setSelected(index);
-                              }}
                               className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
                             <p className="text-sm font-medium">{item.label}</p>
                             <span className={cn(
                                 "w-0 h-0.5 transition-all bg-primary rounded-full group-hover:w-4",
-                                selected === index ? "w-6" : ""
+                                index === i ? "w-6" : ""
                             )}/>
                         </Link>
                     ))

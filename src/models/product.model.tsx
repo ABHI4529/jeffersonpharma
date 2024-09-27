@@ -20,4 +20,5 @@ export interface ProductModel {
     brandQuery : string[];
     drugQuery : string[];
     contentsQuery : string[];
+    storageHandling : string;
 }

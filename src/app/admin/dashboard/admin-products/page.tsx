@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { DatabaseService } from "@/core/database-service";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useRouter, useSearchParams } from "next/navigation";
+import Sidebar from "@/components/admin-components/sidebar";
 
 export default function AdminProductsPage() {
     const [searchField, setSearchField] = useState("product_name"); // Default search by Product Name
@@ -77,13 +78,13 @@ export default function AdminProductsPage() {
     // Trigger URL change and search when Enter is pressed
     const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-            router.push(`/admin/dashboard/products?type=${searchField}&q=${encodeURIComponent(searchQuery)}`);
+            router.push(`/admin/dashboard/admin-products?type=${searchField}&q=${encodeURIComponent(searchQuery)}`);
         }
     };
 
     // Trigger URL change and search when button is clicked
     const handleSearchClick = () => {
-        router.push(`/admin/dashboard/products?type=${searchField}&q=${encodeURIComponent(searchQuery)}`);
+        router.push(`/admin/dashboard/admin-products?type=${searchField}&q=${encodeURIComponent(searchQuery)}`);
     };
 
     // Pagination for loading more products
@@ -95,6 +96,7 @@ export default function AdminProductsPage() {
 
     return (
         <div className={"flex flex-col px-8"}>
+            <Sidebar/>
             <div className={"flex justify-between items-center pb-6 border-b border-b-neutral-100"}>
                 <h1 className={"text-3xl font-bold"}>Products</h1>
                 <div className={"flex gap-3"}>
@@ -120,7 +122,7 @@ export default function AdminProductsPage() {
                     <Button className={"rounded-xl h-11 gap-2"} onClick={handleSearchClick}>
                         Search
                     </Button>
-                    <Button className={"rounded-xl h-11 gap-2"} onClick={() => router.push("/admin/dashboard/products/details")}>
+                    <Button className={"rounded-xl h-11 gap-2"} onClick={() => router.push("/admin/dashboard/admin-products/details")}>
                         Add New
                         <PlusIcon />
                     </Button>
@@ -137,8 +139,8 @@ export default function AdminProductsPage() {
                         <TableHead>Pack Size</TableHead>
                     </TableHeader>
                     <TableBody>
-                        {products.map((item) => (
-                            <TableRow key={item.id} onClick={() => router.push(`/admin/dashboard/products/details?id=${item.id}`)}>
+                        {products.map((item, index) => (
+                            <TableRow key={index} onClick={() => router.push(`/admin/dashboard/admin-products/details?id=${item.id}`)}>
                                 <TableCell>{item.drug}</TableCell>
                                 <TableCell>{item.brand}</TableCell>
                                 <TableCell>{item.status}</TableCell>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: "Revolutionizing healthcare by providing access to high-quality, affordable pharmaceutical solutions worldwide.",
 };
 
-export default function RootLayout({
+export default function Layout({
                                        children,
                                    }: Readonly<{
     children: React.ReactNode;
@@ -23,12 +23,8 @@ export default function RootLayout({
         <body
             className={`${inter.className} antialiased`}
         >
-        <header>
-            <NavBar/>
-        </header>
         <div className={"flex flex-col"}>
             {children}
-            <PageFooter/>
         </div>
         </body>
         </html>
