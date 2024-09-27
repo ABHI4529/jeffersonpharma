@@ -104,9 +104,9 @@ export default function ProductsListing() {
                         key={index}
                         route={"/products/details?id=" + product.id}
                         label={product.drug}
-                        scientificName={""}
+                        scientificName={product.brand}
                         description={product.description || "Description here"}
-                        img={"https://placehold.co/800x400/png"} // Replace with real product image if available
+                        img={product.imgUrl} // Replace with real product image if available
                     />
                 ))}
             </div>
