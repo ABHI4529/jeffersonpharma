@@ -16,8 +16,8 @@ export default function PageFooter() {
             route: "/products"
         },
         {
-            label: "Our Company",
-            route: "/company"
+            label: "Blogs",
+            route: "/blogs"
         },
         {
             label: "About",

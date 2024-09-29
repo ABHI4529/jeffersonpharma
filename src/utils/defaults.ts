@@ -1,0 +1,1 @@
+export const defaultProductImage = "https://firebasestorage.googleapis.com/v0/b/jefferson-pharma.appspot.com/o/Jefferson%20Pharma%20India.jpeg?alt=media&token=7515e335-09d9-4019-b61d-413913c46f50";

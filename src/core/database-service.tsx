@@ -106,7 +106,7 @@ export const DatabaseService = () => {
                 const snapshot = doc(db, "blogs", id);
                 return await getDoc(snapshot);
             }catch(error){
-                console.log("Something went wrongL ", error);
+                console.log("Something went wrong", error);
             }
         },
 

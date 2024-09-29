@@ -2,27 +2,27 @@
 
 import logo from "@/assets/logo.svg";
 import Image from "next/image";
-import {Button} from "@/components/ui/button";
-import {usePathname, useRouter} from "next/navigation";
-import {cn} from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
-import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
-import {IoMenu} from "react-icons/io5";
-import {useEffect, useState} from "react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { IoMenu } from "react-icons/io5";
+import { useEffect, useState } from "react";
 
 interface props {
-    index : number;
+    index: number;
 }
 
 
-export default function NavBar({index} : props) {
+export default function NavBar({ index }: props) {
     const path = usePathname();
     const [selected, setSelected] = useState<number>(0);
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const router = useRouter();
 
     useEffect(() => {
-        if(typeof window !== 'undefined'){
+        if (typeof window !== 'undefined') {
             const handleScroll = () => {
                 setIsScrolled(window.scrollY >= 10);
             };
@@ -49,8 +49,8 @@ export default function NavBar({index} : props) {
             route: "/products"
         },
         {
-            label: "Our Company",
-            route: "/company"
+            label: "Blogs",
+            route: "/blogs"
         },
         {
             label: "About",
@@ -67,24 +67,24 @@ export default function NavBar({index} : props) {
             )}
         >
             <div className={"flex w-[200px]"}>
-                <Image src={logo} alt={"logo"} height={30}/>
+                <Image src={logo} alt={"logo"} height={30} />
             </div>
             <div className={"hidden md:flex md:flex-row gap-6"}>
                 {
                     menu.map((item, i) => (
                         <Link href={item.route} key={item.route}
-                              className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
+                            className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
                             <p className="text-sm font-medium">{item.label}</p>
                             <span className={cn(
                                 "w-0 h-0.5 transition-all bg-primary rounded-full group-hover:w-4",
                                 index === i ? "w-6" : ""
-                            )}/>
+                            )} />
                         </Link>
                     ))
                 }
             </div>
             <div className={"w-[200px] hidden md:flex justify-end"}>
-                <Button onClick={()=>{
+                <Button onClick={() => {
                     router.push("#contact");
                 }} className={"w-[150px]"}>
                     Contact us
@@ -92,24 +92,22 @@ export default function NavBar({index} : props) {
             </div>
             <div className={"flex md:hidden"}>
                 <Sheet>
-                    <SheetTrigger>
-                        <Button variant={"ghost"} className={"bg-neutral-600/10 text-primary shadow-none"}>
-                            <IoMenu/>
-                        </Button>
+                    <SheetTrigger className="bg-neutral-600/10 text-primary shadow-none">
+                        <IoMenu />
                     </SheetTrigger>
                     <SheetContent className={"z-[999] bg-white backdrop-blur-2xl"}>
                         {
                             menu.map((item, index) => (
                                 <Link href={item.route} key={item.route}
-                                      onClick={() => {
-                                          setSelected(index);
-                                      }}
-                                      className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
+                                    onClick={() => {
+                                        setSelected(index);
+                                    }}
+                                    className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
                                     <p className="text-sm font-medium">{item.label}</p>
                                     <span className={cn(
                                         "w-0 h-0.5 transition-all bg-primary rounded-full group-hover:w-4",
                                         path.includes(item.route) ? "w-6" : ""
-                                    )}/>
+                                    )} />
                                 </Link>
                             ))
                         }

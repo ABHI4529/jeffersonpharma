@@ -11,6 +11,8 @@ import {Table, TableBody, TableCell, TableRow} from "@/components/ui/table";
 import {cn} from "@/lib/utils";
 import { motion } from "framer-motion";
 import Navbar from "@/components/navbar";
+import PageFooter from "@/components/page-footer";
+import SimilarProducts from "@/app/sections/products/SimilarProducts";
 
 export default function ProductDetails() {
     const [product, setProduct] = useState<ProductModel>();
@@ -144,6 +146,8 @@ export default function ProductDetails() {
                     </motion.div>
                 }
             </div>
+            <SimilarProducts ingridient={product?.drug || ""} />
+            <PageFooter />
         </div>
     )
 }

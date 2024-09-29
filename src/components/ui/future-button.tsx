@@ -1,10 +1,10 @@
-import React, {useState} from "react";
-import {Button, buttonVariants} from "./button";
-import {AiOutlineLoading} from "react-icons/ai";
-import type {VariantProps} from "class-variance-authority";
+import React, { useState } from "react";
+import { Button, buttonVariants } from "./button";
+import { AiOutlineLoading } from "react-icons/ai";
+import type { VariantProps } from "class-variance-authority";
 
-interface Props  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants>{
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
     className?: string;
     onClick?: () => Promise<void>;
     children?: React.ReactNode;
@@ -12,12 +12,12 @@ interface Props  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
 }
 
 export default function FutureButton({
-                                         className = "",
-                                         onClick,
-                                         children,
-                                         disabled,
-                                         ...props
-                                     }: Props) {
+    className = "",
+    onClick,
+    children,
+    disabled,
+    ...props
+}: Props) {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleClick = async () => {
@@ -40,7 +40,7 @@ export default function FutureButton({
             disabled={disabled || isLoading}
             {...props}
         >
-            {isLoading ? <AiOutlineLoading className={"animate-spin"}/> : children}
+            {isLoading ? <AiOutlineLoading className={"animate-spin"} /> : children}
         </Button>
     );
 }

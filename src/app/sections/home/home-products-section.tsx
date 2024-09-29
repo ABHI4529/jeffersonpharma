@@ -1,13 +1,33 @@
 "use client";
 
 import ItemCard from "@/components/item-card";
-import {Carousel, CarouselContent, CarouselItem} from "@/components/ui/carousel";
-import {Button} from "@/components/ui/button";
-import {IoArrowBack, IoArrowForward} from "react-icons/io5";
-import {useState} from "react";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
+import { IoArrowBack, IoArrowForward } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import { DatabaseService } from "@/core/database-service";
+import { ProductModel } from "@/models/product.model";
 
 export default function HomeProductsSection() {
     const [api, setApi] = useState<any>();
+    const [isLoading, setIsLoading] = useState(false);
+    const [products, setProducts] = useState<ProductModel[]>([]);
+
+    const fetchProducts = async () => {
+        setIsLoading(true);
+        try {
+            const fetchedProducts = await DatabaseService().getProducts(6); // Call the function to fetch 20 products at a time
+            setProducts((prevProducts) => [...prevProducts, ...fetchedProducts]);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 
     return (
         <div className={"flex flex-col px-[4%] md:px-[8%] pt-10 md:pt-20 pb-10 bg-[#f2f2f2]"}>
@@ -19,19 +39,16 @@ export default function HomeProductsSection() {
                     align: "start",
                     loop: true,
                 }}
-                setApi={(api) => setApi(api)}
+                    setApi={(api) => setApi(api)}
                 >
                     <CarouselContent >
                         {
-                            Array.from({length: 6}).map((_, index) => (
+                            products.map((product, index) => (
                                 <CarouselItem className={"md:basis-1/3"}>
-                                    <ItemCard scientificName={"Scientific Name"}
-                                              label={"Item Major Title"}
-                                              description={"Kamagra 100mg Oral Jelly is used to treat erectile " +
-                                                  "dysfunction (impotence) in men. It works by\n" +
-                                                  "increasing blood flow to " +
-                                                  "the penis. This helps men to get or maintain an erection."}
-                                              img={"https://placehold.co/800x400/png"}
+                                    <ItemCard scientificName={product.drug}
+                                        label={product.brand}
+                                        description={product.description}
+                                        img={product.imgUrl}
                                     />
                                 </CarouselItem>
                             ))
@@ -39,19 +56,19 @@ export default function HomeProductsSection() {
                     </CarouselContent>
                 </Carousel>
                 <div className={"flex gap-3 items-center justify-center mt-8"}>
-                    <Button variant={"link"}  onClick={()=>{
-                        if(api){
+                    <Button variant={"link"} onClick={() => {
+                        if (api) {
                             api.scrollPrev();
                         }
                     }}>
-                        <IoArrowBack/>
+                        <IoArrowBack />
                     </Button>
-                    <Button variant={"link"} onClick={()=>{
-                        if(api){
+                    <Button variant={"link"} onClick={() => {
+                        if (api) {
                             api.scrollNext();
                         }
                     }}>
-                        <IoArrowForward/>
+                        <IoArrowForward />
                     </Button>
                 </div>
             </div>
