@@ -12,14 +12,21 @@ export default function SimilarProducts({ingridient}: {ingridient: string}) {
     const [products, setProducts] = useState<ProductModel[]>([]);
     const [api, setApi] = useState<any>();
 
-    const fetchProducts = async (ingridient: string) => {
+    const fetchProducts = async (ingredient: string) => {
         try {
-            const fetchedProducts = await DatabaseService().getProducts(3, ingridient, ingridient); // Call the function to fetch 20 products at a time
+            const { fetchedProducts, lastVisible } = await DatabaseService().getProducts(
+                6,
+                null,
+                ingridient,
+                ingredient
+            );
+
             setProducts((prevProducts) => [...prevProducts, ...fetchedProducts]);
         } catch (error) {
             console.error("Error fetching products:", error);
         }
     };
+
 
     useEffect(() => {
         fetchProducts(ingridient);

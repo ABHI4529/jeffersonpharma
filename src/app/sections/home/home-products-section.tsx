@@ -16,7 +16,9 @@ export default function HomeProductsSection() {
     const fetchProducts = async () => {
         setIsLoading(true);
         try {
-            const fetchedProducts = await DatabaseService().getProducts(6); // Call the function to fetch 20 products at a time
+            const { fetchedProducts, lastVisible } = await DatabaseService().getLimitedProducts(
+                6);
+
             setProducts((prevProducts) => [...prevProducts, ...fetchedProducts]);
         } catch (error) {
             console.error("Error fetching products:", error);

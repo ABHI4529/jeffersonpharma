@@ -27,7 +27,7 @@ export default function AdminBlogs(){
     }, [])
 
     return(
-        <div className={"flex flex-col px-8"}>
+        <div className={"flex flex-col px-8 overflow-auto mb-8"}>
             <Sidebar/>
             <div className={"flex justify-between items-center pb-6 border-b border-b-neutral-100"}>
                 <h1 className={"text-3xl font-bold"}>Blogs</h1>

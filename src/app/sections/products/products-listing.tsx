@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -8,16 +8,15 @@ import { IoSearch } from "react-icons/io5";
 import CardItem from "@/components/item-card";
 import { Toaster } from "@/components/ui/sonner";
 import { ProductModel } from "@/models/product.model";
-import {DatabaseService} from "@/core/database-service";
-import {sampleProducts} from "@/assets/sample-products"; // Assuming this contains the Firestore query logic
+import { DatabaseService } from "@/core/database-service";
 
 export default function ProductsListing() {
-    const [searchField, setSearchField] = useState("product_name"); // Default search by Product Name
+    const [searchField, setSearchField] = useState("product_name");
     const [searchQuery, setSearchQuery] = useState("");
     const [products, setProducts] = useState<ProductModel[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(true); // For pagination control
-    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [lastVisibleProduct, setLastVisibleProduct] = useState<any>(null);
 
     const searchBy = [
         { label: "Brand Name", value: "brandQuery" },
@@ -25,49 +24,43 @@ export default function ProductsListing() {
         { label: "Drug", value: "drugQuery" }
     ];
 
-    // Fetch products on initial load and when page changes (for pagination)
-    useEffect(() => {
-        const fetchProducts = async () => {
-            setIsLoading(true);
-
-            try {
-                const fetchedProducts = await DatabaseService().getProducts(10); // Call the function to fetch 20 products at a time
-                setProducts((prevProducts) => [...prevProducts, ...fetchedProducts]);
-
-                if (fetchedProducts.length < 10) {
-                    setHasMore(false); // No more products to load
-                }
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, [page]);
-
-    // Handle search
-    const handleSearch = async () => {
+    const fetchProducts = async (isNewSearch: boolean = false) => {
         setIsLoading(true);
-        setProducts([]); // Clear previous results
-        setPage(1); // Reset pagination
 
         try {
-            const searchResults = await DatabaseService().getProducts(10, searchField, searchQuery); // Modify your getProducts function to accept search parameters
-            setProducts(searchResults);
-            setHasMore(searchResults.length === 10); // Check if we have more results
+            const { fetchedProducts, lastVisible } = await DatabaseService().getProducts(
+                10,
+                isNewSearch ? null : lastVisibleProduct,
+                searchField,
+                searchQuery
+            );
+
+            if (isNewSearch) {
+                setProducts(fetchedProducts);
+            } else {
+                setProducts((prevProducts) => [...prevProducts, ...fetchedProducts]);
+            }
+
+            setLastVisibleProduct(lastVisible);
+            setHasMore(fetchedProducts.length === 10);
         } catch (error) {
-            console.error("Error searching products:", error);
+            console.error("Error fetching products:", error);
         } finally {
             setIsLoading(false);
         }
     };
 
-    // Load more products (pagination)
+    useEffect(() => {
+        fetchProducts(true);
+    }, []);
+
+    const handleSearch = () => {
+        fetchProducts(true);
+    };
+
     const loadMoreProducts = () => {
         if (!isLoading && hasMore) {
-            setPage((prevPage) => prevPage + 1); // Increment page to fetch the next set of products
+            fetchProducts();
         }
     };
 
@@ -97,7 +90,6 @@ export default function ProductsListing() {
                 </Button>
             </div>
 
-            {/* Product grid */}
             <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-8 h-full overflow-y-scroll">
                 {products.map((product, index) => (
                     <CardItem
@@ -106,12 +98,11 @@ export default function ProductsListing() {
                         label={product.drug}
                         scientificName={product.brand}
                         description={product.description || "Description here"}
-                        img={product.imgUrl} // Replace with real product image if available
+                        img={product.imgUrl}
                     />
                 ))}
             </div>
 
-            {/* Pagination: Load More button */}
             {hasMore && (
                 <div className="flex justify-center mt-4">
                     <Button variant={"outline"} className={"border-none w-[200px]"} onClick={loadMoreProducts} disabled={isLoading}>

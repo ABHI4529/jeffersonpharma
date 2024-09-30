@@ -50,15 +50,16 @@ export const DatabaseService = () => {
             }
         },
 
-        getProducts: async (pageSize: number = 10,
-                            searchField?: string,
-                            searchQuery?: string): Promise<ProductModel[]> => {
-            let lastVisibleProduct: DocumentData | null = null;
+        getProducts: async (
+            pageSize: number = 10,
+            lastVisibleProduct: any = null,
+            searchField?: string,
+            searchQuery?: string
+        ): Promise<{ fetchedProducts: ProductModel[], lastVisible: any }> => {
             try {
                 let productQueryConstraints: QueryConstraint[] = [limit(pageSize)];
 
                 if (searchField && searchQuery) {
-                    // Wrap searchQuery in an array if it's not already an array
                     productQueryConstraints.push(where(searchField, "array-contains-any", Array.isArray(searchQuery) ? searchQuery : [searchQuery]));
                 }
 
@@ -69,14 +70,13 @@ export const DatabaseService = () => {
                 const productQuery = query(collection(db, "products"), ...productQueryConstraints);
                 const snapshot = await getDocs(productQuery);
 
-                if (!snapshot.empty) {
-                    lastVisibleProduct = snapshot.docs[snapshot.docs.length - 1];
-                }
+                const fetchedProducts = snapshot.docs.map((doc) => doc.data() as ProductModel);
+                const lastVisible = snapshot.docs[snapshot.docs.length - 1];
 
-                return snapshot.docs.map((doc) => doc.data() as ProductModel);
+                return { fetchedProducts, lastVisible };
             } catch (error) {
                 console.error("Error getting products:", error);
-                return [];
+                return { fetchedProducts: [], lastVisible: null };
             }
         },
         getProductFromId: async(id: string): Promise<ProductModel> => {
@@ -182,6 +182,32 @@ export const DatabaseService = () => {
             } catch (error) {
                 console.error("Error deleting product:", error);
                 toast.error("Error deleting product.");
+            }
+        },
+
+        getLimitedProducts : async (
+            index: number = 6,
+            lastVisibleProduct: any = null
+        ): Promise<{ fetchedProducts: ProductModel[], lastVisible: any }> => {
+            try {
+                let productQuery = query(collection(db, "products"), limit(index));
+
+                if (lastVisibleProduct) {
+                    productQuery = query(productQuery, startAfter(lastVisibleProduct));
+                }
+
+                const snapshot = await getDocs(productQuery);
+
+                const fetchedProducts = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                } as ProductModel));
+                const lastVisible = snapshot.docs[snapshot.docs.length - 1];
+
+                return { fetchedProducts, lastVisible };
+            } catch (error) {
+                console.error("Error getting products:", error);
+                return { fetchedProducts: [], lastVisible: null };
             }
         },
     }

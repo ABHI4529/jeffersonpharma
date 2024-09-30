@@ -12,32 +12,40 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Sidebar from "@/components/admin-components/sidebar";
 
 export default function AdminProductsPage() {
-    const [searchField, setSearchField] = useState("product_name"); // Default search by Product Name
+    const [searchField, setSearchField] = useState("product_name");
     const [searchQuery, setSearchQuery] = useState("");
     const [products, setProducts] = useState<ProductModel[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(true); // For pagination control
-    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [lastVisibleProduct, setLastVisibleProduct] = useState<any>(null);
 
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    // Immutable array for search options
     const searchBy = Object.freeze([
         { label: "Brand Name", value: "brandQuery" },
         { label: "Product Content", value: "contentsQuery" },
         { label: "Drug", value: "drugQuery" }
     ]);
 
-    // Pure function to fetch products
-    const fetchProducts = async (page: number) => {
+    const fetchProducts = async (isNewSearch: boolean = false) => {
         setIsLoading(true);
         try {
-            const fetchedProducts = await DatabaseService().getProducts(10); // Fetch 10 products at a time
-            setProducts(prevProducts => [...prevProducts, ...fetchedProducts]); // Immutable update
-            if (fetchedProducts.length < 10) {
-                setHasMore(false); // No more products to load
+            const { fetchedProducts, lastVisible } = await DatabaseService().getProducts(
+                10,
+                isNewSearch ? null : lastVisibleProduct,
+                searchField,
+                searchQuery
+            );
+
+            if (isNewSearch) {
+                setProducts(fetchedProducts);
+            } else {
+                setProducts(prevProducts => [...prevProducts, ...fetchedProducts]);
             }
+
+            setLastVisibleProduct(lastVisible);
+            setHasMore(fetchedProducts.length === 10);
         } catch (error) {
             console.error("Error fetching products:", error);
         } finally {
@@ -45,52 +53,33 @@ export default function AdminProductsPage() {
         }
     };
 
-    // Pure function to handle search
-    const handleSearch = async (query: string, field = searchField) => {
-        setIsLoading(true);
-        setProducts([]); // Clear previous results immutably
-        setPage(1); // Reset pagination
-        try {
-            const searchResults = await DatabaseService().getProducts(15, field, query);
-            setProducts(searchResults); // Immutable update
-            setHasMore(searchResults.length === 15);
-        } catch (error) {
-            console.error("Error searching products:", error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    // Effect to handle URL changes or page reload (reacting to query params)
-    useEffect(() => {
-        const query = searchParams.get("q");
-        const type = searchParams.get("type") || "product_name"; // Default to "product_name" if type is missing
-
-        setSearchField(type);
-        if (query) {
-            setSearchQuery(query); // Update searchQuery state immutably
-            handleSearch(query, type);    // Trigger search based on query param
-        } else {
-            fetchProducts(page); // Fetch initial products if no query param
-        }
-    }, [page, searchParams]); // React to both page and searchParams
-
-    // Trigger URL change and search when Enter is pressed
-    const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            router.push(`/admin/dashboard/admin-products?type=${searchField}&q=${encodeURIComponent(searchQuery)}`);
-        }
-    };
-
-    // Trigger URL change and search when button is clicked
-    const handleSearchClick = () => {
+    const handleSearch = () => {
         router.push(`/admin/dashboard/admin-products?type=${searchField}&q=${encodeURIComponent(searchQuery)}`);
     };
 
-    // Pagination for loading more products
+    useEffect(() => {
+        const query = searchParams.get("q");
+        const type = searchParams.get("type") || "product_name";
+
+        setSearchField(type);
+        setSearchQuery(query || "");
+
+        if (query) {
+            fetchProducts(true);
+        } else {
+            fetchProducts(true);
+        }
+    }, [searchParams]);
+
+    const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            handleSearch();
+        }
+    };
+
     const loadMoreProducts = () => {
         if (!isLoading && hasMore) {
-            setPage(prevPage => prevPage + 1); // Increment page immutably
+            fetchProducts();
         }
     };
 
@@ -116,10 +105,10 @@ export default function AdminProductsPage() {
                         placeholder={"Search..."}
                         className={"bg-neutral-200 w-[400px] rounded-xl"}
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)} // Immutable update
-                        onKeyDown={handleSearchKeyDown} // Trigger search on Enter key
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleSearchKeyDown}
                     />
-                    <Button className={"rounded-xl h-11 gap-2"} onClick={handleSearchClick}>
+                    <Button className={"rounded-xl h-11 gap-2"} onClick={handleSearch}>
                         Search
                     </Button>
                     <Button className={"rounded-xl h-11 gap-2"} onClick={() => router.push("/admin/dashboard/admin-products/details")}>
@@ -140,7 +129,7 @@ export default function AdminProductsPage() {
                     </TableHeader>
                     <TableBody>
                         {products.map((item, index) => (
-                            <TableRow key={index} onClick={() => router.push(`/admin/dashboard/admin-products/details?id=${item.id}`)}>
+                            <TableRow key={item.id || index} onClick={() => router.push(`/admin/dashboard/admin-products/details?id=${item.id}`)}>
                                 <TableCell>{item.drug}</TableCell>
                                 <TableCell>{item.brand}</TableCell>
                                 <TableCell>{item.status}</TableCell>
@@ -150,12 +139,10 @@ export default function AdminProductsPage() {
                             </TableRow>
                         ))}
                         {hasMore && (
-                            <TableRow className={"absolute w-full"}>
-                                <div className="flex justify-center w-full my-2">
-                                    <Button variant={"outline"} size={"sm"} className={"border-none w-[200px]"} onClick={loadMoreProducts} disabled={isLoading}>
-                                        {isLoading ? "Loading..." : "Load More"}
-                                    </Button>
-                                </div>
+                            <TableRow className="absolute flex justify-center w-full my-2">
+                                <Button variant={"outline"} size={"sm"} className={"border-none w-[200px]"} onClick={loadMoreProducts} disabled={isLoading}>
+                                    {isLoading ? "Loading..." : "Load More"}
+                                </Button>
                             </TableRow>
                         )}
                     </TableBody>
