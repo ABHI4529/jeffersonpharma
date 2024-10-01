@@ -1,4 +1,5 @@
 import ContactForm from "@/components/forms/contact-form";
+import {IoCall} from "react-icons/io5";
 
 
 export default function ContactSection() {
@@ -20,6 +21,19 @@ export default function ContactSection() {
                         className={"rounded-md"}
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"></iframe>
+                    <div className={"flex flex-wrap items-center gap-3"}>
+                        <div className={"flex gap-1 text-xs text-muted-foreground"}>
+                            <p>
+                                CIN: U46497MH2023PTC399990
+                            </p>
+                        </div>
+                        <div className={"flex gap-1 text-xs text-muted-foreground"}>
+                            <IoCall/>
+                            <p>
+                                +91 – 9373283509 / 9270190596
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -2,8 +2,9 @@ import React from 'react';
 
 import {Bebas_Neue} from "next/font/google";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import HomeHeroCarousel from "@/components/home-hero-carousel";
+import Link from "next/link";
 
 const bebasNeue = Bebas_Neue({subsets: ["latin"], weight: "400"})
 
@@ -35,9 +36,11 @@ export default function HeroSection() {
                 <div className={"flex gap-3 mt-8 w-[90%]"}>
                     <Input placeholder={"Search Products"}
                            className={"bg-[#e7e7e7] border border-primary md:border-none h-11 rounded-sm"}/>
-                    <Button className={"h-11 w-[150px]"}>
+                    <Link href={"/products"} className={buttonVariants({
+                        className: "h-11 w-[150px]"
+                    })}>
                         Search
-                    </Button>
+                    </Link>
                 </div>
             </div>
         </div>
