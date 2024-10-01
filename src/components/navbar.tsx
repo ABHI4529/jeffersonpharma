@@ -97,16 +97,13 @@ export default function NavBar({ index }: props) {
                     </SheetTrigger>
                     <SheetContent className={"z-[999] bg-white backdrop-blur-2xl"}>
                         {
-                            menu.map((item, index) => (
+                            menu.map((item, i) => (
                                 <Link href={item.route} key={item.route}
-                                    onClick={() => {
-                                        setSelected(index);
-                                    }}
-                                    className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
+                                      className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
                                     <p className="text-sm font-medium">{item.label}</p>
                                     <span className={cn(
                                         "w-0 h-0.5 transition-all bg-primary rounded-full group-hover:w-4",
-                                        path.includes(item.route) ? "w-6" : ""
+                                        index === i ? "w-6" : ""
                                     )} />
                                 </Link>
                             ))

@@ -25,7 +25,7 @@ export default function BlogsListing() {
             <div className="blogs-container w-full flex flex-wrap gap-8 mt-8">
                 {Blogs?.map((e) => {
                     return (
-                        <div className={"relative rounded-[30px] h-[250px] md:h-[300px] min-w-96 flex flex-col"}>
+                        <div className={"relative rounded-[30px] h-[250px] md:h-[300px] w-full md:w-auto md:min-w-96 flex flex-col"}>
                             <img
                                 src={e.get("coverImage")}
                                 className={"absolute w-full h-full object-cover rounded-[30px]"}
