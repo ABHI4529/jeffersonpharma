@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -11,8 +12,11 @@ import { ProductModel } from "@/models/product.model";
 import { DatabaseService } from "@/core/database-service";
 
 export default function ProductsListing() {
-    const [searchField, setSearchField] = useState("product_name");
-    const [searchQuery, setSearchQuery] = useState("");
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    const [searchField, setSearchField] = useState(searchParams.get("type") || "product_name");
+    const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
     const [products, setProducts] = useState<ProductModel[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
@@ -51,11 +55,18 @@ export default function ProductsListing() {
     };
 
     useEffect(() => {
+        const type = searchParams.get("type");
+        const q = searchParams.get("q");
+        if (type) setSearchField(type);
+        if (q) setSearchQuery(q);
         fetchProducts(true);
-    }, []);
+    }, [searchParams]);
 
     const handleSearch = () => {
-        fetchProducts(true);
+        const params = new URLSearchParams();
+        params.set("type", searchField);
+        params.set("q", searchQuery);
+        router.push(`/products?${params.toString()}`);
     };
 
     const loadMoreProducts = () => {
@@ -67,7 +78,7 @@ export default function ProductsListing() {
     return (
         <div className="relative min-h-screen px-[4%] md:px-[8%] py-24 flex flex-col gap-3">
             <div className="flex gap-3 border bg-[#e7e7e7]/50 border-gray-300 p-2 rounded-md">
-                <Select onValueChange={(value) => setSearchField(value)}>
+                <Select value={searchField} onValueChange={(value) => setSearchField(value)}>
                     <SelectTrigger className="bg-white border-none h-11 rounded-[8px] w-[200px]">
                         <SelectValue placeholder="Search By" />
                     </SelectTrigger>
@@ -90,28 +101,37 @@ export default function ProductsListing() {
                 </Button>
             </div>
 
-            <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-8 h-full overflow-y-scroll">
-                {products.map((product, index) => (
-                    <CardItem
-                        key={index}
-                        route={"/products/details?id=" + product.id}
-                        label={product.drug}
-                        scientificName={product.brand}
-                        description={product.description || "Description here"}
-                        img={product.imgUrl}
-                    />
-                ))}
-            </div>
+            {
+                products.length != 0 ?(
+                    <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-8 h-full overflow-y-scroll">
+                        {products.map((product, index) => (
+                            <CardItem
+                                key={index}
+                                route={"/products/details?id=" + product.id}
+                                label={product.drug}
+                                scientificName={product.brand}
+                                description={product.description || "Description here"}
+                                img={product.imgUrl}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="h-[50vh] flex w-full items-center justify-center">
+                        <p className={"text-muted-foreground"}>No Products Found</p>
+                    </div>
+                )
+            }
 
             {hasMore && (
                 <div className="flex justify-center mt-4">
-                    <Button variant={"outline"} className={"border-none w-[200px]"} onClick={loadMoreProducts} disabled={isLoading}>
+                    <Button variant={"outline"} className={"border-none w-[200px]"} onClick={loadMoreProducts}
+                            disabled={isLoading}>
                         {isLoading ? "Loading..." : "Load More"}
                     </Button>
                 </div>
             )}
 
-            <Toaster />
+            <Toaster/>
         </div>
     );
 }

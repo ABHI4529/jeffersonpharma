@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { IoMenu } from "react-icons/io5";
 import { useEffect, useState } from "react";
+import EnquireForm from "@/app/sections/forms/enquire-form";
 
 interface props {
     index: number;
@@ -49,7 +50,7 @@ export default function NavBar({ index }: props) {
             route: "/products"
         },
         {
-            label: "Blogs",
+            label: "News",
             route: "/blogs"
         },
         {
@@ -84,15 +85,13 @@ export default function NavBar({ index }: props) {
                 }
             </div>
             <div className={"w-[200px] hidden md:flex justify-end"}>
-                <Button onClick={() => {
-                    router.push("#contact");
-                }} className={"w-[150px]"}>
-                    Contact us
-                </Button>
+                <EnquireForm>
+                    Contact Us
+                </EnquireForm>
             </div>
             <div className={"flex md:hidden"}>
                 <Sheet>
-                    <SheetTrigger className="bg-neutral-600/10 text-primary shadow-none">
+                    <SheetTrigger className="bg-neutral-600/10 p-2 rounded text-primary shadow-none">
                         <IoMenu />
                     </SheetTrigger>
                     <SheetContent className={"z-[999] bg-white backdrop-blur-2xl"}>

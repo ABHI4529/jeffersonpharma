@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
 
 
-export default function EnquireForm(){
+export default function EnquireForm({children}: {children: React.ReactNode}) {
     const schema = z.object({
         name : z.string().min(2, {
             message: "Full Name is Required"
@@ -41,8 +41,9 @@ export default function EnquireForm(){
     return(
         <Dialog>
             <DialogTrigger className={buttonVariants({className: "gap-2"})}>
-                Enquire Now
-                <ArrowUpRight/>
+                {
+                    children
+                }
             </DialogTrigger>
             <DialogContent className={"z-[999]"}>
                 <DialogHeader>

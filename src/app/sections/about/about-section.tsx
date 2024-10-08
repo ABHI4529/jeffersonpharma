@@ -35,7 +35,10 @@ export default function AboutSection() {
                         Join us on this journey to redefine the future of pharmaceutical accessibility.
                     </p>
                     <div className={"flex flex-col mt-8 w-min"}>
-                        <EnquireForm/>
+                        <EnquireForm>
+                            Enquire Now
+                            <ArrowUpRight/>
+                        </EnquireForm>
                     </div>
                 </div>
                 <div className={"flex flex-col h-[200px] md:h-[80vh] w-full"}>

@@ -21,7 +21,7 @@ export default function BlogsListing() {
 
     return (
         <div className="relative min-h-screen px-[4%] md:px-[8%] py-24 flex flex-col gap-3">
-            <h1 className='text-2xl font-semibold'>Our Blogs</h1>
+            <h1 className='text-2xl font-semibold'>Latest News</h1>
             <div className="blogs-container w-full flex flex-wrap gap-8 mt-8">
                 {Blogs?.map((e) => {
                     return (

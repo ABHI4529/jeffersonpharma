@@ -16,10 +16,8 @@ export default function ContactSection() {
                 <span className={"h-0.5 w-40 my-8 md:my-0 md:h-52 md:w-0.5 bg-neutral-300 self-center mx-10"}/>
                 <div className={"flex gap-3 flex-col w-full"}>
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3366.673556639365!2d79.05901307471848!3d21.180417382553426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4eb9bc7ca6143%3A0x988769d538bc0e3d!2sJefferson%20Impex%20Pvt%20Ltd!5e1!3m2!1sen!2sin!4v1726304406532!5m2!1sen!2sin"
-                        width="100%" height="100%"
-                        className={"rounded-md"}
-                        loading="lazy"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.295492735861!2d79.05901307471848!3d21.180417382553426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4eb9bc7ca6143%3A0x988769d538bc0e3d!2sJefferson%20Impex%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1728370384128!5m2!1sen!2sin"
+                        className={"h-full w-full rounded-md border border-gray-300"} loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"></iframe>
                     <div className={"flex flex-wrap items-center gap-3"}>
                         <div className={"flex gap-1 text-xs text-muted-foreground"}>

@@ -26,9 +26,9 @@ export default function HomeBlogsSection() {
 
     return (
         <div className={"px-[4%] md:px-[8%] pt-10 pb-20 flex flex-col"}>
-            <h1 className={"text-lg md:text-2xl font-bold"}>Our Blogs</h1>
+            <h1 className={"text-lg md:text-2xl font-bold"}>Latest News</h1>
             <p className={"text-xs md:text-sm text-muted-foreground"}>
-                Keep checking out our blogs for new updates.
+                Keep checking out our news articles for latest updates.
             </p>
 
             <Carousel opts={{

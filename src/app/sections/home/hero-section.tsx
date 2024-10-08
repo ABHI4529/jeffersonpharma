@@ -5,12 +5,11 @@ import {Input} from "@/components/ui/input";
 import {Button, buttonVariants} from "@/components/ui/button";
 import HomeHeroCarousel from "@/components/home-hero-carousel";
 import Link from "next/link";
+import HomeProductSearch from "@/components/home-product-search";
 
 const bebasNeue = Bebas_Neue({subsets: ["latin"], weight: "400"})
 
 export default function HeroSection() {
-
-
     return (
         <div className="relative items-center justify-center w-full h-screen overflow-hidden">
             <HomeHeroCarousel/>
@@ -33,15 +32,7 @@ export default function HeroSection() {
                     We at Jefferson Pharma take pride in being one of the fastest growing pharmaceutical suppliers and
                     believe that true hospitality extends beyond the realm of traditional service industries.
                 </h2>
-                <div className={"flex gap-3 mt-8 w-[90%]"}>
-                    <Input placeholder={"Search Products"}
-                           className={"bg-[#e7e7e7] border border-primary md:border-none h-11 rounded-sm"}/>
-                    <Link href={"/products"} className={buttonVariants({
-                        className: "h-11 w-[150px]"
-                    })}>
-                        Search
-                    </Link>
-                </div>
+                <HomeProductSearch/>
             </div>
         </div>
     );
