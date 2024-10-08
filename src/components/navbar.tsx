@@ -21,6 +21,7 @@ export default function NavBar({ index }: props) {
     const [selected, setSelected] = useState<number>(0);
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const router = useRouter();
+    const [open, setOpen] = useState<boolean>(false);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -86,11 +87,11 @@ export default function NavBar({ index }: props) {
             </div>
             <div className={"w-[200px] hidden md:flex justify-end"}>
                 <EnquireForm>
-                    Contact Us
+                    <p className={"w-[120px]"}>Contact Us</p>
                 </EnquireForm>
             </div>
             <div className={"flex md:hidden"}>
-                <Sheet>
+                <Sheet open={open} onOpenChange={setOpen}>
                     <SheetTrigger className="bg-neutral-600/10 p-2 rounded text-primary shadow-none">
                         <IoMenu />
                     </SheetTrigger>
@@ -98,6 +99,9 @@ export default function NavBar({ index }: props) {
                         {
                             menu.map((item, i) => (
                                 <Link href={item.route} key={item.route}
+                                      onClick={()=>{
+                                          setOpen(false);
+                                      }}
                                       className="group cursor-pointer flex px-2 py-2 flex-col items-center justify-center">
                                     <p className="text-sm font-medium">{item.label}</p>
                                     <span className={cn(

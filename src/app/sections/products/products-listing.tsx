@@ -15,7 +15,7 @@ export default function ProductsListing() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const [searchField, setSearchField] = useState(searchParams.get("type") || "product_name");
+    const [searchField, setSearchField] = useState(searchParams.get("type") || "drugQuery");
     const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
     const [products, setProducts] = useState<ProductModel[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -77,9 +77,9 @@ export default function ProductsListing() {
 
     return (
         <div className="relative min-h-screen px-[4%] md:px-[8%] py-24 flex flex-col gap-3">
-            <div className="flex gap-3 border bg-[#e7e7e7]/50 border-gray-300 p-2 rounded-md">
+            <div className="flex md:flex-row flex-col gap-3 border bg-[#e7e7e7]/50 border-gray-300 p-2 rounded-md">
                 <Select value={searchField} onValueChange={(value) => setSearchField(value)}>
-                    <SelectTrigger className="bg-white border-none h-11 rounded-[8px] w-[200px]">
+                    <SelectTrigger className="bg-white border-none h-11 rounded-[8px] w-full md:w-[200px]">
                         <SelectValue placeholder="Search By" />
                     </SelectTrigger>
                     <SelectContent>
@@ -90,15 +90,17 @@ export default function ProductsListing() {
                         ))}
                     </SelectContent>
                 </Select>
-                <Input
-                    placeholder="Search...."
-                    className="bg-white"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <Button className="h-11 rounded-[8px] gap-2" onClick={handleSearch}>
-                    <IoSearch /> Search
-                </Button>
+                <div className={"flex gap-3 w-full"}>
+                    <Input
+                        placeholder="Search...."
+                        className="bg-white"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <Button className="h-11 rounded-[8px] w-[120px] gap-2" onClick={handleSearch}>
+                        <IoSearch /> Search
+                    </Button>
+                </div>
             </div>
 
             {
