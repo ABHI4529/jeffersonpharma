@@ -47,10 +47,14 @@ export default function HomeProductsSection() {
                         {
                             products.map((product, index) => (
                                 <CarouselItem className={"md:basis-1/3"}>
-                                    <ItemCard scientificName={product.drug}
-                                        label={product.brand}
-                                        description={product.description}
-                                        img={product.imgUrl}
+                                    <ItemCard key={index}
+                                              route={"/products/details?id=" + product.id}
+                                              label={product.drug}
+                                              scientificName={product.brand}
+                                              manufacturer={product.manufacturer}
+                                              packSize={product.packSize}
+                                              strength={product.strength}
+                                              img={product.imgUrl}
                                     />
                                 </CarouselItem>
                             ))

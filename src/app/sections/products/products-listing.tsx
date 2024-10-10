@@ -24,7 +24,6 @@ export default function ProductsListing() {
 
     const searchBy = [
         { label: "Brand Name", value: "brandQuery" },
-        { label: "Product Content", value: "contentsQuery" },
         { label: "Drug", value: "drugQuery" }
     ];
 
@@ -112,7 +111,9 @@ export default function ProductsListing() {
                                 route={"/products/details?id=" + product.id}
                                 label={product.drug}
                                 scientificName={product.brand}
-                                description={product.description || "Description here"}
+                                manufacturer={product.manufacturer}
+                                packSize={product.packSize}
+                                strength={product.strength}
                                 img={product.imgUrl}
                             />
                         ))}

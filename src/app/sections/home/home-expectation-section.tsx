@@ -3,6 +3,7 @@
 import {sampleArcs, World} from "@/components/ui/globe";
 import {IoAirplane, IoDocuments, IoGlobe, IoPlanet} from "react-icons/io5";
 import {FaTruck} from "react-icons/fa";
+import AnimatedCounter from "@/components/ui/animated-counter";
 
 const  globeConfig = {
     pointSize: 4,
@@ -54,21 +55,21 @@ const DesktopInfo = () => {
                 <div className={"flex gap-3 items-center"}>
                     <IoGlobe className={"text-6xl text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <p className={"text-2xl font-bold"}>180</p>
+                        <AnimatedCounter from={0} to={180}/>
                         <p>Countries Served</p>
                     </div>
                 </div>
                 <div className={"flex gap-3 items-center"}>
                     <FaTruck className={"text-6xl text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <p className={"text-2xl font-bold"}>203,385</p>
+                        <AnimatedCounter from={0} to={203385}/>
                         <p>Products Lines Supplied</p>
                     </div>
                 </div>
                 <div className={"flex gap-3 items-center"}>
                     <IoDocuments className={"text-6xl text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <p className={"text-2xl font-bold"}>9</p>
+                        <AnimatedCounter from={0} to={9}/>
                         <p>Compliance Certificates</p>
                     </div>
                 </div>
@@ -77,14 +78,14 @@ const DesktopInfo = () => {
                 <div className={"flex gap-3 items-center"}>
                     <IoAirplane className={"text-6xl rotate-[-45deg] text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <p className={"text-2xl font-bold"}>100</p>
+                        <AnimatedCounter from={0} to={100}/>
                         <p>Tons Of Medicines Shipped</p>
                     </div>
                 </div>
                 <div className={"flex gap-3 items-center w-[300px]"}>
                     <IoDocuments className={"text-6xl text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <p className={"text-2xl font-bold"}>100</p>
+                        <AnimatedCounter from={0} to={100}/>
                         <p>Lakhs+ Patients / Dose Cycles Catered</p>
                     </div>
                 </div>
