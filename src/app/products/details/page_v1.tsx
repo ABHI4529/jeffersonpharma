@@ -9,14 +9,10 @@ import {Lens} from "@/components/ui/lens";
 import Image from "next/image";
 import {Table, TableBody, TableCell, TableRow} from "@/components/ui/table";
 import {cn} from "@/lib/utils";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import Navbar from "@/components/navbar";
 import PageFooter from "@/components/page-footer";
 import SimilarProducts from "@/app/sections/products/SimilarProducts";
-import msme from "@/assets/MSME Logo.jpg";
-import ministry from "@/assets/ministry-for-corporate-affairs-jobs.jpg";
-import fda from "@/assets/FDA Maharashtra.png";
-import DeliveryCardsCarousel from "@/components/delivery-cards-carousel";
 
 export default function ProductDetails() {
     const [product, setProduct] = useState<ProductModel>();
@@ -52,34 +48,30 @@ export default function ProductDetails() {
                             className={"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex border border-gray-300 rounded-md shadow-2xl bg-white p-6"}>
                             <AiOutlineLoading className={"animate-spin"}/>
                         </div>
-                    ) : <div className={"flex md:flex-row flex-col justify-between gap-3"}>
-                        <div className={"flex flex-col gap-3 w-full md:w-[350px]"}>
-                            <div
-                                className={"flex flex-col shadow-md bg-white h-min z-[9] rounded-md"}>
-                                <Lens hovering={hovering} setHovering={setHovering}>
-                                    <img
-                                        src={product?.imgUrl}
-                                        alt="image"
-                                        className="rounded-2xl w-full object-cover h-[250px]"
-                                    />
-                                </Lens>
-                            </div>
-                            <div
-                                className={"hidden md:flex flex-col p-6 gap-3 shadow-md bg-white h-full z-[9] rounded-md"}>
-                                <p className={"text-md font-bold"}>
-                                    Delivery Process
-                                </p>
-                                <div className={"h-full w-full"}>
-                                    <DeliveryCardsCarousel/>
-                                </div>
-                            </div>
+                    ) : <motion.div
+                        initial={{
+                            y: 50,
+                            scale: 0.7,
+                            opacity: 0
+                        }}
+                        animate={{
+                            y: 0,
+                            scale: 1,
+                            opacity: 1
+                        }}
+                        className={"flex bg-white p-7 rounded-2xl shadow-2xl self-center flex-col gap-6 z-[9] w-full md:w-[35vw]"}>
+                        <div className={"flex flex-col"}>
+                            <Lens hovering={hovering} setHovering={setHovering}>
+                                <img
+                                    src={product?.imgUrl}
+                                    alt="image"
+                                    className="rounded-2xl w-full h-[250px]"
+                                />
+                            </Lens>
                         </div>
-                        <div className={"flex flex-col shadow-md p-6 gap-2 bg-white rounded-md z-[9] w-full"}>
+                        <div className={cn("flex flex-col w-full")}>
                             <p className={"text-xs md:text-sm text-[#2472cc]"}>{product.drug}</p>
                             <h1 className={"text-xl md:text-4xl font-bold"}>{product.brand}</h1>
-                            <p className={"text-sm text-muted-foreground"}>
-                                {product.description}
-                            </p>
                             <div
                                 className={"flex rounded-xl p-3 flex-col mt-5 shadow-inner bg-[#fcfcfc] border border-gray-300"}>
                                 <Table>
@@ -151,44 +143,11 @@ export default function ProductDetails() {
                                 </Table>
                             </div>
                         </div>
-                        <div
-                            className={"flex md:hidden flex-col p-6 gap-3 shadow-md bg-white h-full z-[9] rounded-md"}>
-                            <p className={"text-md font-bold"}>
-                                Delivery Process
-                            </p>
-                            <div className={"h-full w-full"}>
-                                <DeliveryCardsCarousel/>
-                            </div>
-                        </div>
-                        <div className={"flex flex-col bg-white w-full md:w-[80%] shadow-md z-[9] rounded-md gap-3 p-6"}>
-                            <p className={"font-bold text-md"}>About Jefferson Pharma India.</p>
-                            <p className={"text-muted-foreground text-xs h-full"}>
-                                We at Jefferson Pharma India believe that true hospitality extends beyond the realm of
-                                traditional service industries and take pride in being one of the fastest growing
-                                pharmaceutical suppliers. Jefferson Pharma India is driven by a profound commitment to
-                                transforming the pharmaceutical supply chain. Our mission is to ensure that medications
-                                reach those who need them the most, regardless of their location or circumstance.
-
-                                We recognize the challenges faced by healthcare providers, patients, and communities in
-                                accessing vital pharmaceutical products. By leveraging innovative solutions and
-                                strategic partnerships, we aim to streamline the supply chain, reduce barriers, and
-                                enhance the availability of medications. Our vision is to help create a world where
-                                everyone has access to the medicines they require, empowering individuals and
-                                communities to lead healthier lives. Together, we can bridge the gap in pharmaceutical
-                                distribution and make a meaningful impact on global health. Join us on this journey to
-                                redefine the future of pharmaceutical accessibility.
-                            </p>
-                            <div className={"flex gap-6 items-center"}>
-                                <img src={msme.src} alt={"msme"} className={"h-11"}/>
-                                <img src={ministry.src} alt={"msme"} className={"h-11"}/>
-                                <img src={fda.src} alt={"msme"} className={"h-11"}/>
-                            </div>
-                        </div>
-                    </div>
+                    </motion.div>
                 }
             </div>
-            <SimilarProducts ingridient={product?.drug || ""}/>
-            <PageFooter/>
+            <SimilarProducts ingridient={product?.drug || ""} />
+            <PageFooter />
         </div>
     )
 }
