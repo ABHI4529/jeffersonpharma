@@ -65,116 +65,117 @@ export default function GetQuoteForm({ children }: { children: React.ReactNode }
                         Fill the form below to request a quote for the product
                     </DialogDescription>
                 </DialogHeader>
-                <div className={"flex flex-col overflow-auto max-h-[400px]"}>
+                <div className={"flex flex-col"}>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
                             {/* Country Field */}
-                            <FormField
-                                name={"country"}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Country</FormLabel>
-                                        {countries ? (
-                                            <AutoComplete
-                                                options={countries.map((e) => ({
-                                                    label: e.name.common,
-                                                    value: e.name.common,
-                                                }))}
-                                                emptyMessage={"No results found"}
-                                                {...field}
-                                            />
-                                        ) : (
-                                            <></>
-                                        )}
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                            <div className={"flex flex-col gap-3 px-1 overflow-auto max-h-[400px]"}>
+                                <FormField
+                                    name={"country"}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Country</FormLabel>
+                                            {countries ? (
+                                                <AutoComplete
+                                                    options={countries.map((e) => ({
+                                                        label: e.name.common,
+                                                        value: e.name.common,
+                                                    }))}
+                                                    emptyMessage={"No results found"}
+                                                    {...field}
+                                                />
+                                            ) : (
+                                                <></>
+                                            )}
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-                            {/* Name Field */}
-                            <FormField
-                                name={"name"}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Name</FormLabel>
-                                        <Input {...field} />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                                {/* Name Field */}
+                                <FormField
+                                    name={"name"}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Name</FormLabel>
+                                            <Input {...field} />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-                            {/* Company Field */}
-                            <FormField
-                                name={"company"}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Company</FormLabel>
-                                        <Input {...field} />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                                {/* Company Field */}
+                                <FormField
+                                    name={"company"}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Company</FormLabel>
+                                            <Input {...field} />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-                            {/* Product Field */}
-                            <FormField
-                                name={"product"}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Product</FormLabel>
-                                        <Input {...field} />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                                {/* Product Field */}
+                                <FormField
+                                    name={"product"}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Product</FormLabel>
+                                            <Input {...field} />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-                            {/* Quantity Field */}
-                            <FormField
-                                name={"quantity"}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Quantity</FormLabel>
-                                        <Input {...field} type="number" />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                                {/* Quantity Field */}
+                                <FormField
+                                    name={"quantity"}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Quantity</FormLabel>
+                                            <Input {...field} type="number" />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-                            {/* Phone Field */}
-                            <FormField
-                                name={"phone"}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Phone</FormLabel>
-                                        <Input {...field} placeholder="+123 4567890" />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                                {/* Phone Field */}
+                                <FormField
+                                    name={"phone"}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Phone</FormLabel>
+                                            <Input {...field} placeholder="+123 4567890" />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-                            {/* Email Field */}
-                            <FormField
-                                name={"email"}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Email</FormLabel>
-                                        <Input {...field} type="email" />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                                {/* Email Field */}
+                                <FormField
+                                    name={"email"}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Email</FormLabel>
+                                            <Input {...field} type="email" />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
 
-                            {/* Message Field */}
-                            <FormField
-                                name={"message"}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Message</FormLabel>
-                                        <Textarea {...field} placeholder="Add any additional details" />
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
+                                {/* Message Field */}
+                                <FormField
+                                    name={"message"}
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Message</FormLabel>
+                                            <Textarea {...field} placeholder="Add any additional details" />
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                             <Button type={"submit"}>Submit</Button>
                         </form>
                     </Form>

@@ -76,7 +76,7 @@ export default function EnquireForm({children}: {children: React.ReactNode}) {
                                 name={"name"}
                                 render={({field}) => (
                                     <FormItem>
-                                        <FormLabel>Name</FormLabel>
+                                        <FormLabel>Country</FormLabel>
                                         {
                                             countries != null ?
                                             <AutoComplete options={countries?.map((e, i)=>({label: e.name.common, value: e.name.common}))} emptyMessage={"No results found"} {...field}/>

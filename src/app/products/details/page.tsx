@@ -52,8 +52,8 @@ export default function ProductDetails() {
                             className={"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex border border-gray-300 rounded-md shadow-2xl bg-white p-6"}>
                             <AiOutlineLoading className={"animate-spin"}/>
                         </div>
-                    ) : <div className={"flex md:flex-row flex-col justify-between gap-3"}>
-                        <div className={"flex flex-col gap-3 w-full md:w-[350px]"}>
+                    ) : <div className={"flex md:flex-row flex-col justify-between gap-5"}>
+                        <div className={"flex flex-col gap-5 w-full md:w-[350px]"}>
                             <div
                                 className={"flex flex-col shadow-md bg-white h-min z-[9] rounded-md"}>
                                 <Lens hovering={hovering} setHovering={setHovering}>
