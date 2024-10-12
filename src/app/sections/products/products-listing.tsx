@@ -35,7 +35,7 @@ export default function ProductsListing() {
                 10,
                 isNewSearch ? null : lastVisibleProduct,
                 searchField,
-                searchQuery
+                searchQuery.toLowerCase()
             );
 
             if (isNewSearch) {
