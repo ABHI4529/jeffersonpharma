@@ -6,6 +6,7 @@ import {Poppins} from "next/font/google";
 import dynamic from "next/dynamic";
 import React from "react";
 import icon from "@/assets/ico.png";
+import iico from "@/public/ico.ico";
 
 const poppins = Poppins({weight: ["400","500", "700"], subsets: ["latin"]});
 
@@ -13,7 +14,8 @@ export const metadata: Metadata = {
     title: "Jefferson Pharma India",
     description: "Revolutionizing healthcare by providing access to high-quality, affordable pharmaceutical solutions worldwide.",
     icons: {
-        icon: icon.src,
+        shortcut: iico.src,
+        icon: iico.src,
     }
 };
 
