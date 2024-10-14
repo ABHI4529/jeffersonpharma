@@ -15,14 +15,13 @@ export default function HeroSection() {
             <HomeHeroCarousel/>
             <div
                 className={"absolute md:bg-gradient-to-t md:from-transparent bg-gradient-to-t from-white to-white/30 md:bg-transparent px-[4%] md:px-[8%] flex w-full md:w-[55%] h-full justify-center flex-col gap-2"}>
-                <h1 className={`text-xl md:text-3xl ${bebasNeue.className}`}>JEFFERSON PHARMA INDIA PVT. LTD.</h1>
                 <div className={"flex flex-col gap-1"}>
-                    <h1 className={"text-xl md:text-5xl font-bold md:whitespace-nowrap"}>
+                    <h1 className={"text-2xl md:text-5xl font-bold md:whitespace-nowrap"}>
                         Ensuring <span className={"mx-1 text-primary"}>
                         Health
                     </span>
                     </h1>
-                    <h1 className={"text-xl md:text-5xl font-bold md:whitespace-nowrap"}>
+                    <h1 className={"text-2xl md:text-5xl font-bold md:whitespace-nowrap"}>
                         Across <span className={"text-primary"}>
                         Continents
                     </span>

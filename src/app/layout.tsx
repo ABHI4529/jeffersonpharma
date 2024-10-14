@@ -10,7 +10,7 @@ import icon from "@/assets/ico.png";
 const poppins = Poppins({weight: ["400","500", "700"], subsets: ["latin"]});
 
 export const metadata: Metadata = {
-    title: "Jefferson Implex India",
+    title: "Jefferson Pharma India",
     description: "Revolutionizing healthcare by providing access to high-quality, affordable pharmaceutical solutions worldwide.",
     icons: {
         icon: icon.src,

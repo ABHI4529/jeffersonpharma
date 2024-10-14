@@ -34,7 +34,7 @@ export default function HomeProductsSection() {
     return (
         <div className={"flex flex-col px-[4%] md:px-[8%] pt-10 md:pt-20 pb-10 bg-[#f2f2f2]"}>
             <h1 className={"text-lg md:text-2xl font-bold"}>Explore Our Products</h1>
-            <p className={"text-xs max-w-72 md:max-w-full md:text-sm text-muted-foreground"}>Go through a wide range of Jefferson Implex products and contact us
+            <p className={"text-xs max-w-72 md:max-w-full md:text-sm text-muted-foreground"}>Go through a wide range of Jefferson Pharma India and contact us
                 for custom order.</p>
             <div className={"flex flex-col mt-8"}>
                 <Carousel opts={{

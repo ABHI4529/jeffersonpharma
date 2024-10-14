@@ -12,7 +12,7 @@ export default function AboutSection() {
         <div className={"flex flex-col h-full w-full"}>
             <div className={"flex flex-col-reverse md:flex-row gap-6 h-full items-center"}>
                 <div className={"flex flex-col gap-1 mt-18 w-full"}>
-                    <h1 className={`text-xl md:text-4xl ${bebasNeue.className}`}>JEFFERSON IMPLEX PVT. LTD.</h1>
+                    <h1 className={`text-xl md:text-4xl ${bebasNeue.className}`}>JEFFERSON PHARMA INDIA PVT. LTD.</h1>
                     <p className={"text-sm"}>
                         We at Jefferson Pharma India believe that true hospitality extends beyond the realm of
                         traditional

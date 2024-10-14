@@ -22,7 +22,7 @@ export default function GetQuoteForm({ children }: { children: React.ReactNode }
     const [countries, setCountries] = useState<any[]>();
 
     async function getCountries() {
-        const response = await fetch("https://restcountries.com/v3.1/all?fields=name");
+        const response = await fetch(" [");
         const data = await response.json();
         setCountries(data);
     }

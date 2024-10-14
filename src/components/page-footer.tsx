@@ -30,7 +30,7 @@ export default function PageFooter() {
             <div className={"flex mt-8 md:mt-0 flex-col gap-2 mr-8"}>
                 <img src={logo.src} alt={"logo"} className={"h-14 w-min"}/>
                 <p className={"text-xs"}>
-                    Copyright © 2024 Jefferson Implex Pvt. Ltd <br/>
+                    Copyright © 2024 Jefferson Pharma India Pvt. Ltd <br/>
                     All rights reserved
                 </p>
             </div>
