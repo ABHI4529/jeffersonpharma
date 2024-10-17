@@ -13,6 +13,7 @@ import {
 import {db} from "@/utils/firebase";
 import {toast} from "sonner";
 import {StorageService} from "@/core/storage-service";
+import {ReviewModel} from "@/models/review.model";
 
 
 export const DatabaseService = () => {
@@ -73,39 +74,39 @@ export const DatabaseService = () => {
                 const fetchedProducts = snapshot.docs.map((doc) => doc.data() as ProductModel);
                 const lastVisible = snapshot.docs[snapshot.docs.length - 1];
 
-                return { fetchedProducts, lastVisible };
+                return {fetchedProducts, lastVisible};
             } catch (error) {
                 console.error("Error getting products:", error);
-                return { fetchedProducts: [], lastVisible: null };
+                return {fetchedProducts: [], lastVisible: null};
             }
         },
-        getProductFromId: async(id: string): Promise<ProductModel> => {
-            try{
+        getProductFromId: async (id: string): Promise<ProductModel> => {
+            try {
                 const q = query(collection(db, "products"), where("id", "==", id));
                 const snapshot = await getDocs(q);
                 return snapshot.docs[0].data() as ProductModel;
-            }catch(error){
+            } catch (error) {
                 console.log("Something went wrongL ", error);
                 return {} as ProductModel;
             }
         },
 
-        getDocIdFromId: async(id: string): Promise<string> => {
-            try{
+        getDocIdFromId: async (id: string): Promise<string> => {
+            try {
                 const q = query(collection(db, "products"), where("id", "==", id));
                 const snapshot = await getDocs(q);
                 return snapshot.docs[0].id;
-            }catch(error){
+            } catch (error) {
                 console.log("Something went wrongL ", error);
                 return "";
             }
         },
 
         getBlogFromId: async (id: string) => {
-            try{
+            try {
                 const snapshot = doc(db, "blogs", id);
                 return await getDoc(snapshot);
-            }catch(error){
+            } catch (error) {
                 console.log("Something went wrong", error);
             }
         },
@@ -124,7 +125,7 @@ export const DatabaseService = () => {
             }
         },
 
-        getAllBlogs: async () =>{
+        getAllBlogs: async () => {
             return await getDocs(collection(db, "blogs"));
         },
 
@@ -185,7 +186,7 @@ export const DatabaseService = () => {
             }
         },
 
-        getLimitedProducts : async (
+        getLimitedProducts: async (
             index: number = 6,
             lastVisibleProduct: any = null
         ): Promise<{ fetchedProducts: ProductModel[], lastVisible: any }> => {
@@ -204,11 +205,33 @@ export const DatabaseService = () => {
                 } as ProductModel));
                 const lastVisible = snapshot.docs[snapshot.docs.length - 1];
 
-                return { fetchedProducts, lastVisible };
+                return {fetchedProducts, lastVisible};
             } catch (error) {
                 console.error("Error getting products:", error);
-                return { fetchedProducts: [], lastVisible: null };
+                return {fetchedProducts: [], lastVisible: null};
             }
         },
+        createReview: async (review: ReviewModel) => {
+            if (review != undefined) {
+                await addDoc(
+                    collection(db, "reviews"), review
+                ).then((e) => {
+                    toast.message(
+                        "Review added successfully"
+                    )
+                })
+            } else {
+                toast.error(
+                    "Something went wrong"
+                )
+            }
+        },
+        getAllReviews: async () => {
+            return await getDocs(collection(db, "reviews"));
+        },
+        deleteReview: async (id: string) => {
+            const reviewRef = doc(db, "reviews", id);
+            await deleteDoc(reviewRef);
+        }
     }
 }
