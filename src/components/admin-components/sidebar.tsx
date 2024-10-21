@@ -21,6 +21,10 @@ export default function SideBar(){
         {
             label : "Reviews",
             route : "/admin/dashboard/admin-reviews"
+        },
+        {
+            label : "Links",
+            route : "/admin/dashboard/admin-links"
         }
     ]
 

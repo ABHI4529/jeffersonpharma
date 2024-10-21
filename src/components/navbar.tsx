@@ -2,7 +2,7 @@
 
 import logo from "@/assets/logo.png";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -86,9 +86,9 @@ export default function NavBar({ index }: props) {
                 }
             </div>
             <div className={"w-[200px] hidden md:flex justify-end"}>
-                <EnquireForm>
-                    <p className={"w-[120px]"}>Contact Us</p>
-                </EnquireForm>
+                <Link href={"/contact"} className={buttonVariants({className: "w-[150px]"})}>
+                    Contact Us
+                </Link>
             </div>
             <div className={"flex md:hidden"}>
                 <Sheet open={open} onOpenChange={setOpen}>

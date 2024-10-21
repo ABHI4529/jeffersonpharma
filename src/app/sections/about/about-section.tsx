@@ -35,16 +35,6 @@ export default function AboutSection() {
                         pharmaceutical distribution and make a meaningful impact on global health.
                         Join us on this journey to redefine the future of pharmaceutical accessibility.
                     </p>
-                    <div className={"flex gap-8 mt-8 w-min"}>
-                        <EnquireForm>
-                            Enquire Now
-                            <ArrowUpRight/>
-                        </EnquireForm>
-                        <GetQuoteForm>
-                            Get Quote
-                            <ArrowUpRight/>
-                        </GetQuoteForm>
-                    </div>
                 </div>
                 <div className={"flex flex-col h-[200px] md:h-[80vh] w-full"}>
                     <img src={"https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"}

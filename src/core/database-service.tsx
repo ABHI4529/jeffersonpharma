@@ -51,6 +51,9 @@ export const DatabaseService = () => {
             }
         },
 
+        getAllProducts: async() => {
+            
+        },
         getProducts: async (
             pageSize: number = 10,
             lastVisibleProduct: any = null,

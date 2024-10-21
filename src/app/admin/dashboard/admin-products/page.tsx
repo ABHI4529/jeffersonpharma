@@ -10,6 +10,7 @@ import { DatabaseService } from "@/core/database-service";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useRouter, useSearchParams } from "next/navigation";
 import Sidebar from "@/components/admin-components/sidebar";
+import {IoShare} from "react-icons/io5";
 
 export default function AdminProductsPage() {
     const [searchField, setSearchField] = useState("product_name");
@@ -110,6 +111,10 @@ export default function AdminProductsPage() {
                     />
                     <Button className={"rounded-xl h-11 gap-2"} onClick={handleSearch}>
                         Search
+                    </Button>
+                    <Button className={"rounded-xl h-11 gap-2"}>
+                        <IoShare/>
+                        Export
                     </Button>
                     <Button className={"rounded-xl h-11 gap-2"} onClick={() => router.push("/admin/dashboard/admin-products/details")}>
                         Add New
