@@ -15,7 +15,7 @@ interface ItemCardProps {
 export default function CardItem({label, scientificName, strength, packSize, manufacturer, img, route}: ItemCardProps) {
     return (
         <Card className={"border-[#d2d2d2] shadow-none bg-white rounded-[30px] p-6"}>
-            <img src={img} className={"rounded-[22px] w-full h-[200px] object-cover]"} alt={"product"}/>
+            <img src={img} className={"rounded-[22px] w-full h-[200px] object-cover"} alt={"product"}/>
             <div className={"py-3"}>
                 <p className={"text-xs text-muted-foreground"}>{scientificName}</p>
                 <h1 className={"text-md md:text-xl font-bold"}>{label}</h1>

@@ -1,21 +1,35 @@
-import { PinContainer } from "@/components/ui/3d-pin";
-import world from "@/assets/world.svg";
-import {Card, CardContent} from "@/components/ui/card";
+"use client";
+
+
 import ContactForm from "@/components/forms/contact-form";
 import {IoArrowBack, IoCaretBack} from "react-icons/io5";
 import EnquireForm from "@/app/sections/forms/enquire-form";
 import {ArrowUpRight} from "lucide-react";
 import GetQuoteForm from "@/app/sections/forms/get-quote-form";
 import React from "react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import Link from "next/link";
+import {motion} from "framer-motion";
 
 
 export default function ContactHeroSection() {
 
 
     return (
-        <div className={"flex flex-col py-[4%] md:flex-row md:justify-between gap-8 items-center min-h-screen px-[4%] md:px-[8%]"}>
+        <motion.div
+            initial={{
+                x: "100%",
+                opacity: 0
+            }}
+            animate={{
+                x: "0%",
+                opacity: 1
+            }}
+            transition={{
+                type : 'spring',
+                duration: 0.8
+            }}
+            className={"flex flex-col py-[4%] md:flex-row md:justify-between gap-8 items-center min-h-screen px-[4%] md:px-[8%]"}>
             <div className={"flex flex-col gap-2 w-full"}>
                 <div className={"flex flex-col"}>
                     <Link href={"/"} className={"flex gap-2 items-center text-xs md:text-sm text-primary"}>
@@ -41,7 +55,8 @@ export default function ContactHeroSection() {
                         Enquire Now
                         <ArrowUpRight/>
                     </Link>
-                    <Link href={"/quote"} className={buttonVariants({variant: "outline",className: "w-[150px] gap-2"})}>
+                    <Link href={"/quote"}
+                          className={buttonVariants({variant: "outline", className: "w-[150px] gap-2"})}>
                         Get Quote
                         <ArrowUpRight/>
                     </Link>
@@ -50,6 +65,6 @@ export default function ContactHeroSection() {
             <div className={"flex flex-col w-full md:border-l md:p-6"}>
                 <ContactForm/>
             </div>
-        </div>
+        </motion.div>
     )
 }

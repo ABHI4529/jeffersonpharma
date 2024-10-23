@@ -4,6 +4,8 @@ import {sampleArcs, World} from "@/components/ui/globe";
 import {IoAirplane, IoDocuments, IoGlobe, IoPlanet} from "react-icons/io5";
 import {FaTruck} from "react-icons/fa";
 import AnimatedCounter from "@/components/ui/animated-counter";
+import {useEffect, useState} from "react";
+import globe from "@/assets/globe.svg";
 
 const  globeConfig = {
     pointSize: 4,
@@ -29,6 +31,15 @@ const  globeConfig = {
 };
 
 export default function HomeExpectationSection() {
+    const [supportsWebGL, setSupportsWebGL] = useState<any>(false);
+
+    useEffect(() => {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext("experimental-webgl");
+        setSupportsWebGL(gl);
+    }, []);
+
+
     return (
         <div
             className={"relative flex bg-dot-black/[0.2] items-center justify-center flex-col py-20 overflow-hidden"}>
@@ -41,7 +52,11 @@ export default function HomeExpectationSection() {
             <MobileInfo/>
             <div className={"relative flex w-full h-full flex-col"}>
                 <div className={"absolute w-full bottom-[-350px] md:bottom-[-480px] h-[600px] md:h-[800px]"}>
-                    <World data={sampleArcs} globeConfig={globeConfig}/>
+                    {
+                        supportsWebGL
+                            ? <World data={sampleArcs} globeConfig={globeConfig}/>
+                            : <img src={globe.src} alt={"globe"} className={"w-full h-[500px] translate-y-[100px] object-contain"}/>
+                    }
                 </div>
             </div>
         </div>

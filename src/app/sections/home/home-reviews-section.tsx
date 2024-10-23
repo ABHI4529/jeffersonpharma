@@ -48,8 +48,8 @@ export default function HomeReviewsSection() {
                                                 </div>
                                             </div>
                                         </CardHeader>
-                                        <CardContent className={"text-sm"}>
-                                            <p>{review.get("review")}</p>
+                                        <CardContent className={"text-xs md:text-sm"}>
+                                            <p>{review.get("review").toString().substring(0, 250)}...</p>
                                         </CardContent>
                                     </Card>
                                 </CardItem>

@@ -4,7 +4,7 @@ import ContactHeroSection from "../sections/contact/contact-hero-section";
 
 export default function ContactPage(){
     return(
-        <div className={"flex flex-col"}>
+        <div className={"flex flex-col overflow-hidden"}>
             <ContactHeroSection/>
         </div>
     )

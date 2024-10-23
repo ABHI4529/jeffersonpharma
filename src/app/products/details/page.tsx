@@ -56,7 +56,7 @@ export default function ProductDetails() {
                         <div className={"flex flex-col gap-5 w-full md:w-[350px]"}>
                             <div
                                 className={"flex flex-col shadow-md bg-white h-min z-[9] rounded-md"}>
-                                <Lens hovering={hovering} setHovering={setHovering}>
+                                <Lens>
                                     <img
                                         src={product?.imgUrl}
                                         alt="image"

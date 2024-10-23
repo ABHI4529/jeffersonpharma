@@ -2,7 +2,7 @@ import {ProductModel} from "@/models/product.model";
 import {
     addDoc,
     collection, deleteDoc, doc,
-    DocumentData, getDoc,
+    DocumentData, getCountFromServer, getDoc,
     getDocs,
     limit,
     query,
@@ -59,28 +59,38 @@ export const DatabaseService = () => {
             lastVisibleProduct: any = null,
             searchField?: string,
             searchQuery?: string
-        ): Promise<{ fetchedProducts: ProductModel[], lastVisible: any }> => {
+        ): Promise<{ fetchedProducts: ProductModel[], lastVisible: any, totalProducts: number }> => {
             try {
                 let productQueryConstraints: QueryConstraint[] = [limit(pageSize)];
 
+                // Adding search conditions if a search field and query are provided
                 if (searchField && searchQuery) {
-                    productQueryConstraints.push(where(searchField, "array-contains-any", Array.isArray(searchQuery) ? searchQuery : [searchQuery]));
+                    productQueryConstraints.push(
+                        where(searchField, "array-contains-any", Array.isArray(searchQuery) ? searchQuery : [searchQuery])
+                    );
                 }
 
+                // Add pagination starting point if available
                 if (lastVisibleProduct) {
                     productQueryConstraints.push(startAfter(lastVisibleProduct));
                 }
 
+                // Query Firestore collection with the constraints
                 const productQuery = query(collection(db, "products"), ...productQueryConstraints);
                 const snapshot = await getDocs(productQuery);
 
-                const fetchedProducts = snapshot.docs.map((doc) => doc.data() as ProductModel);
-                const lastVisible = snapshot.docs[snapshot.docs.length - 1];
+                // Get total number of documents for pagination
+                const totalSnapshot = await getCountFromServer(query(collection(db, "products")));
+                const totalProducts = totalSnapshot.data().count;
 
-                return {fetchedProducts, lastVisible};
+                // Extract data from the snapshot
+                const fetchedProducts = snapshot.docs.map((doc) => doc.data() as ProductModel);
+                const lastVisible = snapshot.docs[snapshot.docs.length - 1]; // Last visible product for next pagination
+
+                return {fetchedProducts, lastVisible, totalProducts};
             } catch (error) {
                 console.error("Error getting products:", error);
-                return {fetchedProducts: [], lastVisible: null};
+                return {fetchedProducts: [], lastVisible: null, totalProducts: 0};
             }
         },
         getProductFromId: async (id: string): Promise<ProductModel> => {

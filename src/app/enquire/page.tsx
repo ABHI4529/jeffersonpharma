@@ -14,7 +14,7 @@ import Link from "next/link";
 import {ArrowUpRight} from "lucide-react";
 import ContactForm from "@/components/forms/contact-form";
 import {useRouter} from "next/navigation";
-
+import {motion} from "framer-motion";
 
 export default function Enquire(){
     const [countries, setCountries] = useState<any[]>();
@@ -50,86 +50,104 @@ export default function Enquire(){
     }
 
     return (
-        <div className={"flex flex-col md:flex-row md:justify-between gap-8 items-center min-h-screen py-[4%] px-[4%] md:px-[8%]"}>
-            <div className={"flex flex-col gap-2 w-full"}>
-                <div className={"flex flex-col"}>
-                    <div onClick={()=>router.back()} className={"flex gap-2 cursor-pointer items-center text-xs md:text-sm text-primary"}>
-                        <IoArrowBack/>
-                        <p>Back</p>
+        <div className={"flex flex-col overflow-hidden"}>
+            <motion.div
+                initial={{
+                    x: "100%",
+                    opacity: 0
+                }}
+                animate={{
+                    x: "0%",
+                    opacity: 1
+                }}
+                transition={{
+                    type: 'spring',
+                    duration: 0.8
+                }}
+                className={"flex flex-col md:flex-row md:justify-between gap-8 items-center min-h-screen py-[4%] px-[4%] md:px-[8%]"}>
+                <div className={"flex flex-col gap-2 w-full"}>
+                    <div className={"flex flex-col"}>
+                        <div onClick={() => router.back()}
+                             className={"flex gap-2 cursor-pointer items-center text-xs md:text-sm text-primary"}>
+                            <IoArrowBack/>
+                            <p>Back</p>
+                        </div>
+                        <h1 className={"text-xl md:text-5xl font-bold"}>Enquire Now</h1>
                     </div>
-                    <h1 className={"text-xl md:text-5xl font-bold"}>Enquire Now</h1>
-                </div>
-                <p className={"text-muted-foreground md:text-md text-sm"}>
-                    We are always looking for ways to improve our products and services. Contact us and let us know how
-                    we can help you.
-                </p>
-                <div className={"flex flex-col w-min md:w-auto md:flex-row gap-2 mt-4"}>
-                    <div className={"px-4 py-1 bg-neutral-300 rounded-full text-xs"}>
-                        <p>enquiry@jeffersonpharmaindia.com</p>
+                    <p className={"text-muted-foreground md:text-md text-sm"}>
+                        We are always looking for ways to improve our products and services. Contact us and let us know
+                        how
+                        we can help you.
+                    </p>
+                    <div className={"flex flex-col w-min md:w-auto md:flex-row gap-2 mt-4"}>
+                        <div className={"px-4 py-1 bg-neutral-300 rounded-full text-xs"}>
+                            <p>enquiry@jeffersonpharmaindia.com</p>
+                        </div>
+                        <div className={"px-4 py-1 bg-neutral-300 rounded-full text-xs"}>
+                            <p>+91 – 9373283509 / 9270190596</p>
+                        </div>
                     </div>
-                    <div className={"px-4 py-1 bg-neutral-300 rounded-full text-xs"}>
-                        <p>+91 – 9373283509 / 9270190596</p>
+                </div>
+                <div className={"flex flex-col w-full md:border-l md:p-6"}>
+                    <div className={"flex flex-col"}>
+                        <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
+                                <FormField
+                                    name={"name"}
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Country</FormLabel>
+                                            {
+                                                countries != null ?
+                                                    <AutoComplete
+                                                        options={countries?.map((e, i) => ({
+                                                            label: e.name.common,
+                                                            value: e.name.common
+                                                        }))} emptyMessage={"No results found"} {...field}/>
+                                                    : <></>
+                                            }
+                                            <FormMessage></FormMessage>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    name={"name"}
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Name</FormLabel>
+                                            <Input {...field}/>
+                                            <FormMessage></FormMessage>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    name={"email"}
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Email</FormLabel>
+                                            <Input {...field}/>
+                                            <FormMessage></FormMessage>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    name={"message"}
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Message</FormLabel>
+                                            <Textarea {...field}/>
+                                            <FormMessage></FormMessage>
+                                        </FormItem>
+                                    )}
+                                />
+                                <Button type={"submit"}>
+                                    Submit
+                                </Button>
+                            </form>
+                        </Form>
                     </div>
                 </div>
-            </div>
-            <div className={"flex flex-col w-full md:border-l md:p-6"}>
-                <div className={"flex flex-col"}>
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
-                            <FormField
-                                name={"name"}
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Country</FormLabel>
-                                        {
-                                            countries != null ?
-                                                <AutoComplete options={countries?.map((e, i) => ({
-                                                    label: e.name.common,
-                                                    value: e.name.common
-                                                }))} emptyMessage={"No results found"} {...field}/>
-                                                : <></>
-                                        }
-                                        <FormMessage></FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                name={"name"}
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Name</FormLabel>
-                                        <Input {...field}/>
-                                        <FormMessage></FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                name={"email"}
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Email</FormLabel>
-                                        <Input {...field}/>
-                                        <FormMessage></FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                name={"message"}
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Message</FormLabel>
-                                        <Textarea {...field}/>
-                                        <FormMessage></FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                            <Button type={"submit"}>
-                                Submit
-                            </Button>
-                        </form>
-                    </Form>
-                </div>
-            </div>
+            </motion.div>
         </div>
     )
 }

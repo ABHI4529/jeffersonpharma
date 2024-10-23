@@ -14,6 +14,7 @@ import Link from "next/link";
 import {ArrowUpRight} from "lucide-react";
 import ContactForm from "@/components/forms/contact-form";
 import {useRouter} from "next/navigation";
+import {motion} from "framer-motion";
 
 
 export default function Enquire() {
@@ -53,146 +54,162 @@ export default function Enquire() {
     }
 
     return (
-        <div className={"flex flex-col md:flex-row md:justify-between gap-8 items-center min-h-screen py-[4%] px-[4%] md:px-[8%]"}>
-            <div className={"flex flex-col gap-2 w-full"}>
-                <div className={"flex flex-col"}>
-                    <div onClick={() => router.back()}
-                         className={"flex gap-2 cursor-pointer items-center text-xs md:text-sm text-primary"}>
-                        <IoArrowBack/>
-                        <p>Back</p>
+        <div className={"flex flex-col overflow-hidden"}>
+            <motion.div
+                initial={{
+                    x: "100%",
+                    opacity: 0
+                }}
+                animate={{
+                    x: "0%",
+                    opacity: 1
+                }}
+                transition={{
+                    type: 'spring',
+                    duration: 0.8
+                }}
+                className={"flex flex-col md:flex-row md:justify-between gap-8 items-center min-h-screen py-[4%] px-[4%] md:px-[8%]"}>
+                <div className={"flex flex-col gap-2 w-full"}>
+                    <div className={"flex flex-col"}>
+                        <div onClick={() => router.back()}
+                             className={"flex gap-2 cursor-pointer items-center text-xs md:text-sm text-primary"}>
+                            <IoArrowBack/>
+                            <p>Back</p>
+                        </div>
+                        <h1 className={"text-xl md:text-5xl font-bold"}>Get Quote</h1>
                     </div>
-                    <h1 className={"text-xl md:text-5xl font-bold"}>Get Quote</h1>
-                </div>
-                <p className={"text-muted-foreground md:text-md text-sm"}>
-                    Our team will carefully review your details and respond within 24 to 72 hours. We appreciate your
-                    patience and look forward to assisting you.
-                </p>
-                <div className={"flex flex-col w-min md:w-auto md:flex-row gap-2 mt-4"}>
-                    <div className={"px-4 py-1 bg-neutral-300 rounded-full text-xs"}>
-                        <p>enquiry@jeffersonpharmaindia.com</p>
+                    <p className={"text-muted-foreground md:text-md text-sm"}>
+                        Our team will carefully review your details and respond within 24 to 72 hours. We appreciate
+                        your
+                        patience and look forward to assisting you.
+                    </p>
+                    <div className={"flex flex-col w-min md:w-auto md:flex-row gap-2 mt-4"}>
+                        <div className={"px-4 py-1 bg-neutral-300 rounded-full text-xs"}>
+                            <p>enquiry@jeffersonpharmaindia.com</p>
+                        </div>
+                        <div className={"px-4 py-1 bg-neutral-300 rounded-full text-xs"}>
+                            <p>+91 – 9373283509 / 9270190596</p>
+                        </div>
                     </div>
-                    <div className={"px-4 py-1 bg-neutral-300 rounded-full text-xs"}>
-                        <p>+91 – 9373283509 / 9270190596</p>
+                </div>
+                <div className={"flex flex-col w-full md:border-l md:p-6"}>
+                    <div className={"flex flex-col"}>
+                        <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
+                                {/* Country Field */}
+                                <div className={"flex flex-col gap-3 px-1 md:overflow-auto pr-6 md:max-h-[60vh]"}>
+                                    <FormField
+                                        name={"country"}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Country</FormLabel>
+                                                {countries ? (
+                                                    <AutoComplete
+                                                        options={countries.map((e) => ({
+                                                            label: e.name.common,
+                                                            value: e.name.common,
+                                                        }))}
+                                                        emptyMessage={"No results found"}
+                                                        {...field}
+                                                    />
+                                                ) : (
+                                                    <></>
+                                                )}
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    {/* Name Field */}
+                                    <FormField
+                                        name={"name"}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Name</FormLabel>
+                                                <Input {...field} />
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    {/* Company Field */}
+                                    <FormField
+                                        name={"company"}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Company</FormLabel>
+                                                <Input {...field} />
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    {/* Product Field */}
+                                    <FormField
+                                        name={"product"}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Product</FormLabel>
+                                                <Input {...field} />
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    {/* Quantity Field */}
+                                    <FormField
+                                        name={"quantity"}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Quantity</FormLabel>
+                                                <Input {...field} type="number"/>
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    {/* Phone Field */}
+                                    <FormField
+                                        name={"phone"}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Phone</FormLabel>
+                                                <Input {...field} placeholder="+123 4567890"/>
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    {/* Email Field */}
+                                    <FormField
+                                        name={"email"}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Email</FormLabel>
+                                                <Input {...field} type="email"/>
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    {/* Message Field */}
+                                    <FormField
+                                        name={"message"}
+                                        render={({field}) => (
+                                            <FormItem>
+                                                <FormLabel>Message</FormLabel>
+                                                <Textarea {...field} placeholder="Add any additional details"/>
+                                                <FormMessage/>
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                <Button type={"submit"}>Submit</Button>
+                            </form>
+                        </Form>
                     </div>
                 </div>
-            </div>
-            <div className={"flex flex-col w-full md:border-l md:p-6"}>
-                <div className={"flex flex-col"}>
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
-                            {/* Country Field */}
-                            <div className={"flex flex-col gap-3 px-1 md:overflow-auto md:max-h-[60vh]"}>
-                            <FormField
-                                    name={"country"}
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Country</FormLabel>
-                                            {countries ? (
-                                                <AutoComplete
-                                                    options={countries.map((e) => ({
-                                                        label: e.name.common,
-                                                        value: e.name.common,
-                                                    }))}
-                                                    emptyMessage={"No results found"}
-                                                    {...field}
-                                                />
-                                            ) : (
-                                                <></>
-                                            )}
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Name Field */}
-                                <FormField
-                                    name={"name"}
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Name</FormLabel>
-                                            <Input {...field} />
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Company Field */}
-                                <FormField
-                                    name={"company"}
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Company</FormLabel>
-                                            <Input {...field} />
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Product Field */}
-                                <FormField
-                                    name={"product"}
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Product</FormLabel>
-                                            <Input {...field} />
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Quantity Field */}
-                                <FormField
-                                    name={"quantity"}
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Quantity</FormLabel>
-                                            <Input {...field} type="number"/>
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Phone Field */}
-                                <FormField
-                                    name={"phone"}
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Phone</FormLabel>
-                                            <Input {...field} placeholder="+123 4567890"/>
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Email Field */}
-                                <FormField
-                                    name={"email"}
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Email</FormLabel>
-                                            <Input {...field} type="email"/>
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-
-                                {/* Message Field */}
-                                <FormField
-                                    name={"message"}
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormLabel>Message</FormLabel>
-                                            <Textarea {...field} placeholder="Add any additional details"/>
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-                            <Button type={"submit"}>Submit</Button>
-                        </form>
-                    </Form>
-                </div>
-            </div>
+            </motion.div>
         </div>
     )
 }
