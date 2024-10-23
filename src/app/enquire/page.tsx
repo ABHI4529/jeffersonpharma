@@ -15,6 +15,9 @@ import {ArrowUpRight} from "lucide-react";
 import ContactForm from "@/components/forms/contact-form";
 import {useRouter} from "next/navigation";
 import {motion} from "framer-motion";
+import { sendMail } from "@/utils/sendMail";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function Enquire(){
     const [countries, setCountries] = useState<any[]>();
@@ -29,14 +32,11 @@ export default function Enquire(){
 
     useEffect(()=>{
         getCountries();
-
     }, [])
 
     const schema = z.object({
         country: z.string().min(1, "Country is required"),
         name: z.string().min(2, "Name is required"),
-        company: z.string().min(1, "Company is required"),
-        phone: z.string().regex(/^\+\d{1,3}\s\d{7,15}$/, "Phone must include country code and number"),
         email: z.string().email("Invalid email format"),
         message: z.string().min(10, "Message must be at least 10 characters"),
     });
@@ -45,8 +45,23 @@ export default function Enquire(){
         resolver: zodResolver(schema),
     })
 
-    function onSubmit(values : z.infer<typeof schema>){
-        console.log(values)
+    async function onSubmit(values : z.infer<typeof schema>){
+        // enable loader here
+        const mail = await sendMail({
+            name: values.name,
+            email: values.email,
+            message: values.message,
+            country: values.country,
+        })
+        if (mail?.rejected.length === 0) {
+            // disable loader here
+            toast.success("Thank you for contacting us",
+                { description: "We will get back to you as soon as possible." });
+        }else{
+             // disable loader here
+            toast.error("Something went wrong",
+                { description: "Please try again!" });
+        }
     }
 
     return (
@@ -93,7 +108,7 @@ export default function Enquire(){
                         <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
                                 <FormField
-                                    name={"name"}
+                                    name={"country"}
                                     render={({field}) => (
                                         <FormItem>
                                             <FormLabel>Country</FormLabel>
@@ -103,7 +118,7 @@ export default function Enquire(){
                                                         options={countries?.map((e, i) => ({
                                                             label: e.name.common,
                                                             value: e.name.common
-                                                        }))} emptyMessage={"No results found"} {...field}/>
+                                                        }))} emptyMessage={"No results found"} onValueChange={(value)=>{field.onChange(value.label)}}/>
                                                     : <></>
                                             }
                                             <FormMessage></FormMessage>
@@ -147,6 +162,7 @@ export default function Enquire(){
                         </Form>
                     </div>
                 </div>
+                <Toaster />
             </motion.div>
         </div>
     )

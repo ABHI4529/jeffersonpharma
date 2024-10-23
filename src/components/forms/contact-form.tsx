@@ -2,56 +2,76 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import {Form, FormField, FormItem, FormLabel, FormMessage} from "../ui/form";
+import { Form, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
-import {Textarea} from "@/components/ui/textarea";
-import {Button} from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { sendMail } from "@/utils/sendMail";
+import { toast } from "sonner";
 
-export default function ContactForm(){
+export default function ContactForm() {
     const schema = z.object({
-        name : z.string().min(2),
-        email : z.string().email(),
-        message : z.string().min(10),
+        name: z.string().min(2),
+        email: z.string().email(),
+        message: z.string().min(10),
     });
 
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
     });
 
-    function onSubmit(values: z.infer<typeof schema>){
+    async function onSubmit(values: z.infer<typeof schema>) {
+        // enable loader here
         
+
+        const mail = await sendMail({
+            name: values.name,
+            email: values.email,
+            message: values.message
+        })
+        console.log(mail?.rejected.length);
+        
+        if (mail?.rejected.length === 0) {
+            // disable loader here
+            toast.success("Thank you for contacting us",
+                { description: "We will get back to you as soon as possible." });
+        }else{
+             // disable loader here
+            toast.error("Something went wrong",
+                { description: "Please try again!" });
+        }
     }
 
-    return(
+    return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className={"flex flex-col gap-3 w-full"}>
                 <FormField name={"name"} render={
-                    ({field}) => (
+                    ({ field }) => (
                         <FormItem>
                             <FormLabel>Name</FormLabel>
-                            <Input  placeholder={"Name"} {...field}/>
+                            <Input placeholder={"Name"} {...field} />
                             <FormMessage />
                         </FormItem>
                     )
-                }/>
+                } />
                 <FormField name={"email"} render={
-                    ({field}) => (
+                    ({ field }) => (
                         <FormItem>
                             <FormLabel>Email</FormLabel>
-                            <Input placeholder={"Email"} {...field}/>
+                            <Input placeholder={"Email"} {...field} />
                             <FormMessage />
                         </FormItem>
                     )
-                }/>
+                } />
                 <FormField name={"message"} render={
-                    ({field}) => (
+                    ({ field }) => (
                         <FormItem>
                             <FormLabel>Message</FormLabel>
-                            <Textarea placeholder={"Message"} {...field}/>
+                            <Textarea placeholder={"Message"} {...field} />
                             <FormMessage />
                         </FormItem>
                     )
-                }/>
+                } />
                 <div className={"flex justify-end"}>
                     <Button type={"submit"} className={"w-[100px]"}>
                         Submit

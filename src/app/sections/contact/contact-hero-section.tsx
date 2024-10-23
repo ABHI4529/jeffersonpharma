@@ -10,6 +10,7 @@ import React from "react";
 import {Button, buttonVariants} from "@/components/ui/button";
 import Link from "next/link";
 import {motion} from "framer-motion";
+import { Toaster } from "@/components/ui/sonner";
 
 
 export default function ContactHeroSection() {
@@ -65,6 +66,7 @@ export default function ContactHeroSection() {
             <div className={"flex flex-col w-full md:border-l md:p-6"}>
                 <ContactForm/>
             </div>
+            <Toaster />
         </motion.div>
     )
 }
