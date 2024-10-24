@@ -18,9 +18,11 @@ import {motion} from "framer-motion";
 import { sendMail } from "@/utils/sendMail";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
+import {AiOutlineLoading} from "react-icons/ai";
 
 export default function Enquire(){
     const [countries, setCountries] = useState<any[]>();
+    const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
     async function getCountries(){
@@ -47,6 +49,7 @@ export default function Enquire(){
 
     async function onSubmit(values : z.infer<typeof schema>){
         // enable loader here
+        setLoading(true);
         const mail = await sendMail({
             name: values.name,
             email: values.email,
@@ -55,10 +58,12 @@ export default function Enquire(){
         })
         if (mail?.rejected.length === 0) {
             // disable loader here
+            setLoading(false)
             toast.success("Thank you for contacting us",
                 { description: "We will get back to you as soon as possible." });
         }else{
              // disable loader here
+            setLoading(false)
             toast.error("Something went wrong",
                 { description: "Please try again!" });
         }
@@ -155,8 +160,10 @@ export default function Enquire(){
                                         </FormItem>
                                     )}
                                 />
-                                <Button type={"submit"}>
-                                    Submit
+                                <Button disabled={loading} type={"submit"}>
+                                    {
+                                        loading ? <AiOutlineLoading className={"animate-spin"}/> : "Submit"
+                                    }
                                 </Button>
                             </form>
                         </Form>

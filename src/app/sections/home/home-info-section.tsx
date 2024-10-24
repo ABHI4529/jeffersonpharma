@@ -1,7 +1,6 @@
 import home_deliver from "@/assets/home-deliver.png";
 import home_coin from "@/assets/home-coint.png";
 import home_contract from '@/assets/home-contract.png';
-import Image from "next/image";
 
 export default function HomeInfoSection() {
     return (

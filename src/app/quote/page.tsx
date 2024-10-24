@@ -15,10 +15,14 @@ import {ArrowUpRight} from "lucide-react";
 import ContactForm from "@/components/forms/contact-form";
 import {useRouter} from "next/navigation";
 import {motion} from "framer-motion";
+import {sendMail} from "@/utils/sendMail";
+import {toast} from "sonner";
+import {AiOutlineLoading} from "react-icons/ai";
 
 
 export default function Enquire() {
     const [countries, setCountries] = useState<any[]>();
+    const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
     async function getCountries() {
@@ -37,7 +41,7 @@ export default function Enquire() {
         name: z.string().min(2, "Name is required"),
         company: z.string().min(1, "Company is required"),
         product: z.string().min(1, "Product is required"),
-        quantity: z.number().positive("Quantity must be a positive number"),
+        quantity: z.string(),
         phone: z
             .string()
             .regex(/^\+\d{1,3}\s\d{7,15}$/, "Phone must include country code and number"),
@@ -49,8 +53,29 @@ export default function Enquire() {
         resolver: zodResolver(schema),
     });
 
-    function onSubmit(values: z.infer<typeof schema>) {
-        console.log(values);
+    async function onSubmit(values: z.infer<typeof schema>) {
+        setLoading(true);
+        const mail = await sendMail({
+            name: values.name,
+            email: values.email,
+            message: values.message,
+            country: values.country,
+            company: values.company,
+            product: values.product,
+            quantity: values.quantity,
+            phone: values.phone
+        })
+        if (mail?.rejected.length === 0) {
+            // disable loader here
+            setLoading(false);
+            toast.success("Thank you for contacting us",
+                {description: "We will get back to you as soon as possible."});
+        } else {
+            setLoading(false);
+            // disable loader here
+            toast.error("Something went wrong",
+                {description: "Please try again!"});
+        }
     }
 
     return (
@@ -103,18 +128,18 @@ export default function Enquire() {
                                         render={({field}) => (
                                             <FormItem>
                                                 <FormLabel>Country</FormLabel>
-                                                {countries ? (
-                                                    <AutoComplete
-                                                        options={countries.map((e) => ({
-                                                            label: e.name.common,
-                                                            value: e.name.common,
-                                                        }))}
-                                                        emptyMessage={"No results found"}
-                                                        {...field}
-                                                    />
-                                                ) : (
-                                                    <></>
-                                                )}
+                                                {
+                                                    countries != null ?
+                                                        <AutoComplete
+                                                            options={countries?.map((e, i) => ({
+                                                                label: e.name.common,
+                                                                value: e.name.common
+                                                            }))} emptyMessage={"No results found"}
+                                                            onValueChange={(value) => {
+                                                                field.onChange(value.label)
+                                                            }}/>
+                                                        : <></>
+                                                }
                                                 <FormMessage/>
                                             </FormItem>
                                         )}
@@ -204,7 +229,11 @@ export default function Enquire() {
                                         )}
                                     />
                                 </div>
-                                <Button type={"submit"}>Submit</Button>
+                                <Button disabled={loading} type={"submit"}>
+                                    {
+                                        loading ? <AiOutlineLoading className={"animate-spin"}/> : "Submit"
+                                    }
+                                </Button>
                             </form>
                         </Form>
                     </div>
