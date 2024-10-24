@@ -24,7 +24,7 @@ export default function ProductsListing() {
     const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const [isSearching, setIsSearching] = useState(false);
-    const pageSize = 10;
+    const pageSize = 12;
 
     const searchBy = [
         { label: "Brand Name", value: "brandQuery" },
