@@ -25,10 +25,10 @@ export default function HomeReviewsSection() {
     }, [])
 
     return (
-        <div className="relative px-[4%] bg-grid-black/[0.08] gap-10 justify-between md:px-[8%] pt-20 mb-10 flex">
+        <div className="relative md:flex-row flex-col px-[4%] bg-grid-black/[0.08] gap-10 justify-between md:px-[8%] pt-20 mb-10 flex">
             <div
                 className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-[#f2f2f2] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-            <div className={"flex flex-col w-[60%] mt-20"}>
+            <div className={"flex flex-col mdw-[60%] mt-20"}>
                 <h1 className="text-lg z-[9] md:text-2xl font-bold">Reviews</h1>
                 <p className="text-xs z-[9] md:text-sm text-muted-foreground">
                     Our clients are at the heart of everything we do. We understand that their trust and partnership are
@@ -39,7 +39,7 @@ export default function HomeReviewsSection() {
                     medicine; we are fostering a community dedicated to better health and well-being for all
                 </p>
             </div>
-            <div className={"flex flex-col w-[50%]"}>
+            <div className={"flex flex-col mdw-[50%]"}>
                 {
                     reviews != undefined ?
                         <div className="flex flex-col h-full items-center justify-center">
