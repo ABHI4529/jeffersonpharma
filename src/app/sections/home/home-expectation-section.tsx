@@ -6,6 +6,7 @@ import {FaTruck} from "react-icons/fa";
 import AnimatedCounter from "@/components/ui/animated-counter";
 import {useEffect, useState} from "react";
 import globe from "@/assets/globe.svg";
+import {GiMedicines} from "react-icons/gi";
 
 const  globeConfig = {
     pointSize: 4,
@@ -50,41 +51,32 @@ export default function HomeExpectationSection() {
             </h1>
             <DesktopInfo/>
             <MobileInfo/>
-            <div className={"relative flex w-full h-full flex-col"}>
-                <div className={"absolute w-full bottom-[-350px] md:bottom-[-480px] h-[600px] md:h-[800px]"}>
-                    {
-                        supportsWebGL
-                            ? <World data={sampleArcs} globeConfig={globeConfig}/>
-                            : <img src={globe.src} alt={"globe"} className={"w-full h-[500px] translate-y-[100px] object-contain"}/>
-                    }
-                </div>
-            </div>
         </div>
     )
 }
 
 const DesktopInfo = () => {
     return (
-        <div className={"hidden z-[9] px-[4%] md:px-[8%] md:flex gap-12 flex-col h-[500px] w-[80%] mt-8"}>
+        <div className={"hidden z-[9] px-[4%] md:px-[8%] md:flex gap-12 flex-col w-[80%] mt-8"}>
             <div className={"flex justify-between w-full mt-8"}>
                 <div className={"flex gap-3 items-center"}>
                     <IoGlobe className={"text-6xl text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <AnimatedCounter from={0} to={180}/>
+                        <AnimatedCounter from={0} to={90}/>
                         <p>Countries Served</p>
                     </div>
                 </div>
                 <div className={"flex gap-3 items-center"}>
-                    <FaTruck className={"text-6xl text-primary"}/>
+                    <GiMedicines className={"text-6xl text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <AnimatedCounter from={0} to={203385}/>
-                        <p>Products Lines Supplied</p>
+                        <AnimatedCounter from={0} to={180000}/>
+                        <p>Products in Portfolio</p>
                     </div>
                 </div>
                 <div className={"flex gap-3 items-center"}>
                     <IoDocuments className={"text-6xl text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <AnimatedCounter from={0} to={9}/>
+                        <AnimatedCounter from={0} to={6}/>
                         <p>Compliance Certificates</p>
                     </div>
                 </div>
@@ -93,15 +85,24 @@ const DesktopInfo = () => {
                 <div className={"flex gap-3 items-center"}>
                     <IoAirplane className={"text-6xl rotate-[-45deg] text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <AnimatedCounter from={0} to={100}/>
+                        <AnimatedCounter from={0} to={60}/>
                         <p>Tons Of Medicines Shipped</p>
                     </div>
                 </div>
                 <div className={"flex gap-3 items-center w-[300px]"}>
                     <IoDocuments className={"text-6xl text-primary"}/>
                     <div className={"flex flex-col"}>
-                        <AnimatedCounter from={0} to={100}/>
-                        <p>Lakhs+ Patients / Dose Cycles Catered</p>
+                        <AnimatedCounter from={0} to={300}/>
+                        <p>Affiliation Manufacturers</p>
+                    </div>
+                </div>
+            </div>
+            <div className={"flex items-center justify-center w-full"}>
+                <div className={"flex gap-3 items-center w-[300px] md:ml-12"}>
+                    <FaTruck className={"text-6xl text-primary"}/>
+                    <div className={"flex flex-col"}>
+                        <AnimatedCounter from={0} to={2000}/>
+                        <p>Completed Deliveries</p>
                     </div>
                 </div>
             </div>
@@ -111,7 +112,7 @@ const DesktopInfo = () => {
 
 const MobileInfo = () => {
     return (
-        <div className={"md:hidden px-[4%] md:px-[8%] flex gap-12 flex-col h-[500px] w-full mt-8"}>
+        <div className={"md:hidden px-[4%] md:px-[8%] flex gap-12 flex-col md:h-[500px] w-full mt-8"}>
             <div className={"flex justify-between w-full z-[9]"}>
                 <div className={"flex gap-3 items-center"}>
                     <IoGlobe className={"text-4xl text-primary"}/>

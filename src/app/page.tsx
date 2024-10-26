@@ -7,6 +7,7 @@ import HomeBlogsSection from "@/app/sections/home/home-blogs-section";
 import dynamic from "next/dynamic";
 import NavBar from "@/components/navbar";
 import PageFooter from "@/components/page-footer";
+import HomeVissionSection from "@/app/sections/home/home-vission-section";
 
 const HomeExpectationSection = dynamic(() => import ("@/app/sections/home/home-expectation-section"), {ssr: false});
 
@@ -16,7 +17,7 @@ export default function Home() {
         <div className={"flex flex-col"}>
             <NavBar index={0}/>
             <HeroSection/>
-            <HomeInfoSection/>
+            <HomeVissionSection/>
             <HomeExpectationSection/>
             <HomeProductsSection/>
             <HomeReviewsSection/>

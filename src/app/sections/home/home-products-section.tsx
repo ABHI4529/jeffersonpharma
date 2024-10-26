@@ -7,6 +7,7 @@ import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { DatabaseService } from "@/core/database-service";
 import { ProductModel } from "@/models/product.model";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function HomeProductsSection() {
     const [api, setApi] = useState<any>();
@@ -41,6 +42,11 @@ export default function HomeProductsSection() {
                     align: "start",
                     loop: true,
                 }}
+                    plugins={[
+                        Autoplay({
+                            delay: 5000
+                        })
+                    ]}
                     setApi={(api) => setApi(api)}
                 >
                     <CarouselContent >

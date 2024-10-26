@@ -7,8 +7,8 @@ import carousel_1 from "@/assets/carousel_1.png";
 import carousel_2 from "@/assets/carousel_2.png";
 import mobile_1 from "@/assets/mobile_carousel_1.jpg";
 import mobile_2 from "@/assets/mobile_carousel_2.jpg";
-const carousels = [carousel_1, carousel_2];
-const mobile = [mobile_1, mobile_2];
+const carousels = [carousel_1,];
+const mobile = [mobile_1];
 
 export default function HomeHeroCarousel(){
     return (
@@ -20,7 +20,7 @@ export default function HomeHeroCarousel(){
                       }}
                       plugins={[
                           Autoplay({
-                              delay: 5000
+                              delay: 5000   
                           })
                       ]}
             >
