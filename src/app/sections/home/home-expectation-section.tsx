@@ -43,7 +43,7 @@ export default function HomeExpectationSection() {
 
     return (
         <div
-            className={"relative flex bg-dot-black/[0.2] items-center justify-center flex-col py-20 overflow-hidden"}>
+            className={"relative flex bg-dot-black/[0.2] bg-[#f6f6f6] items-center justify-center flex-col py-20 overflow-hidden"}>
             <div
                 className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
             <h1 className={"text-lg px-[4%] md:px-[8%] md:text-2xl font-bold z-[9]"}>
