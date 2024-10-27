@@ -16,11 +16,11 @@ export default function HomeVisionSection() {
                 initial={{
                     left: "0%",
                 }}
-
                 animate={{
                     left: isInView ? "100%" : "0%",
                 }}
                 transition={{
+                    delay: 0.5,
                     duration: 3,
                     ease: "easeInOut",
                 }}

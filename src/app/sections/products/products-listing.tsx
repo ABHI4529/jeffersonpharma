@@ -150,6 +150,7 @@ export default function ProductsListing() {
                 <div className="flex flex-col md:grid md:grid-cols-3 gap-8 mt-8 h-full">
                     {products.map((product, index) => (
                         <CardItem
+                            index={index}
                             key={`${product.id}-${index}`}
                             route={"/products/details?id=" + product.id}
                             label={product.drug}
