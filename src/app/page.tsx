@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import NavBar from "@/components/navbar";
 import PageFooter from "@/components/page-footer";
 import HomeVissionSection from "@/app/sections/home/home-vission-section";
+import SplashScreen from "@/components/splash-screen";
 
 const HomeExpectationSection = dynamic(() => import ("@/app/sections/home/home-expectation-section"), {ssr: false});
 
