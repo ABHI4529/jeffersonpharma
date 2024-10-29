@@ -135,7 +135,7 @@ const HomeBlogsSection: React.FC = () => {
                           {blog.get("title")}
                         </h1>
                         <p className="text-xs md:text-sm">
-                          {blog.get("description")}
+                          {blog.get("description").substring(0, 100)}...
                         </p>
                       </div>
                       <Button
