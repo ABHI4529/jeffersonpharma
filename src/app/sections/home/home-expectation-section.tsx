@@ -91,7 +91,7 @@ const DesktopInfo = () => {
                     }}
                     transition={{
                         duration: 0.5,
-                        delay: 0.4,
+                        delay: 0.3,
                         type: "spring"
                     }}
                     ref={ref}
@@ -113,7 +113,7 @@ const DesktopInfo = () => {
                     }}
                     transition={{
                         duration: 0.5,
-                        delay: 0.8,
+                        delay: 0.4,
                         type: "spring"
                     }}
                     ref={ref}
@@ -137,7 +137,7 @@ const DesktopInfo = () => {
                     }}
                     transition={{
                         duration: 0.5,
-                        delay: 1,
+                        delay: 0.5,
                         type: "spring"
                     }}
                     ref={ref}
@@ -160,7 +160,7 @@ const DesktopInfo = () => {
                     transition={{
                         type: "spring",
                         duration: 0.5,
-                        delay: 1.2
+                        delay: 0.6
                     }}
                     ref={ref}
                     className={"flex gap-3 items-center w-[300px]"}>
@@ -183,7 +183,7 @@ const DesktopInfo = () => {
                     }}
                     transition={{
                         duration: 0.5,
-                        delay: 1.4,
+                        delay: 0.7,
                         type: "spring"
                     }}
                     ref={ref}
