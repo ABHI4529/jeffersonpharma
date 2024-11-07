@@ -14,7 +14,6 @@ export default function AboutPage() {
                 <AboutSection/>
             </div>
             <AboutAddressSection/>
-            <AboutLicensesSection/>
             <ContactSection/>
             <PageFooter />
         </div>

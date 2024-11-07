@@ -54,10 +54,6 @@ export default function NavBar({ index }: props) {
         {
             label: "News",
             route: "/blogs"
-        },
-        {
-            label: "About",
-            route: "/about"
         }
     ]
 
