@@ -21,10 +21,12 @@ export default function ReviewCard({review, index} : props) {
             initial={{
                 opacity: 0,
                 scale: 0.9,
+                background: "#c4c2c2"
             }}
             animate={{
                 opacity: inView ? 1 : 0,
                 scale: inView ? 1 : 0.9,
+                background: inView ? "white" : "#c4c2c2"
             }}
             transition={{
                 duration: 0.5,

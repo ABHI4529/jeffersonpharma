@@ -1,9 +1,10 @@
-import { Button } from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import {Bebas_Neue} from "next/font/google";
 import React from "react";
 import {ArrowUpRight} from "lucide-react";
 import EnquireForm from "@/app/sections/forms/enquire-form";
 import GetQuoteForm from "@/app/sections/forms/get-quote-form";
+import Link from "next/link";
 
 const bebasNeue = Bebas_Neue({subsets: ["latin"], weight: "400"})
 
@@ -35,6 +36,14 @@ export default function AboutSection() {
                         pharmaceutical distribution and make a meaningful impact on global health.
                         Join us on this journey to redefine the future of pharmaceutical accessibility.
                     </p>
+                    <div className={"flex gap-3 mt-5"}>
+                        <Link href={"/enquire"} className={buttonVariants({className: "w-[200px]"})}>
+                            Enquire Now
+                        </Link>
+                        <Link href={"/quote"} className={buttonVariants({className: "w-[200px]"})}>
+                            Get Quote
+                        </Link>
+                    </div>
                 </div>
                 <div className={"flex flex-col h-[200px] md:h-[80vh] w-full"}>
                     <img src={"https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"}
